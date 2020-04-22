@@ -31,7 +31,7 @@
 	</servlet-mapping>
 	
 	
-<!-- 	
+	
 	<filter>
 		<filter-name>encoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -43,6 +43,6 @@
 	<filter-mapping>
 		<filter-name>encoding</filter-name>
 		<servlet-name>appServlet</servlet-name>
-	</filter-mapping> -->
+	</filter-mapping>
 
 </web-app>
