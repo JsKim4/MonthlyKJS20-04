@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.kjs.mapper.LottoMapper">
+	<insert id="insertLotto">
+		insert into 
+		tb_lotto(drw_no, drw_no_date, first_winamnt, first_przwner_co, first_accumant, drw_no1, drw_no2, drw_no3, drw_no4, drw_no5, drw_no6, bnus_no) 
+		values(${drwNo}, ${drwNoDate}, ${firstWinamnt}, ${firstPrzwnerCo}, ${firstAccumant}, ${drwNo1}, ${drwNo2}, ${drwNo3}, ${drwNo4}, ${drwNo5}, ${drwNo6}, ${bnusNo});
+	</insert>
+	
+	<select id="getLottoByDrwNo" resultType="kr.kjs.dto.LottoDTO">
+		select 
+			drw_no drwNo, 
+			drw_no_date drwNoDate, 
+			first_winamnt firstWinamnt, 
+			first_przwner_co firstPrzwnerCo, 
+			first_accumant firstAccumant, 
+			drw_no1 drwNo1, 
+			drw_no2 drwNo2, 
+			drw_no3 drwNo3, 
+			drw_no4 drwNo4, 
+			drw_no5 drwNo5, 
+			drw_no6 drwNo6, 
+			bnus_no bnusNo
+		from 
+			tb_lotto
+		where
+			drw_no=${drwNo}
+	</select>
+</mapper>
