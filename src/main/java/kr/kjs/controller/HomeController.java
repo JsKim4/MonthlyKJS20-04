@@ -1,18 +1,12 @@
 package kr.kjs.controller;
 
 import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,29 +60,31 @@ public class HomeController {
 	}
 	
 	
-	@ResponseBody
-	@RequestMapping(value = "/init/asd123qqa12sad34ds5sdvvbcvccbvbccbc681adasd/{startDrwNo}/{endDrwNo}", method = RequestMethod.GET)
-	public ResponseEntity<String> init(@PathVariable("startDrwNo") Integer startDrwNo,@PathVariable("endDrwNo") Integer endDrwNo) {
-		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();        
-		//Add the Jackson Message converter
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-
-		// Note: here we are making this converter to process any kind of response, 
-		// not only application/*json, which is the default behaviour
-		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));        
-		messageConverters.add(converter); 
-		restTemplate.setMessageConverters(messageConverters);
-		Integer failCount = 0;
-		Integer successCount = 0;
-		for(int i= startDrwNo;i<=endDrwNo;i++) {
-			if(service.insertLotto(restTemplate.getForObject(LOTTO_URL+i, LottoDTO.class)))
-				successCount++;
-			else
-				failCount++;
-		}
-		return new ResponseEntity<String>("success : "+successCount+"\nFailCount : "+failCount,HttpStatus.OK);
-		
-	}
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value =
+	 * "/init/asd123qqa12sad34ds5sdvvbcvccbvbccbc681adasd/{startDrwNo}/{endDrwNo}",
+	 * method = RequestMethod.GET) public ResponseEntity<String>
+	 * init(@PathVariable("startDrwNo") Integer startDrwNo,@PathVariable("endDrwNo")
+	 * Integer endDrwNo) { List<HttpMessageConverter<?>> messageConverters = new
+	 * ArrayList<HttpMessageConverter<?>>(); //Add the Jackson Message converter
+	 * MappingJackson2HttpMessageConverter converter = new
+	 * MappingJackson2HttpMessageConverter();
+	 * 
+	 * // Note: here we are making this converter to process any kind of response,
+	 * // not only application/*json, which is the default behaviour
+	 * converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+	 * messageConverters.add(converter);
+	 * restTemplate.setMessageConverters(messageConverters); Integer failCount = 0;
+	 * Integer successCount = 0; for(int i= startDrwNo;i<=endDrwNo;i++) {
+	 * if(service.insertLotto(restTemplate.getForObject(LOTTO_URL+i,
+	 * LottoDTO.class))) successCount++; else failCount++; } return new
+	 * ResponseEntity<String>("success : "+successCount+"\nFailCount : "+failCount,
+	 * HttpStatus.OK);
+	 * 
+	 * }
+	 */
 
 	
 }
