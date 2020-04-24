@@ -1,4 +1,8 @@
 # MonthlyKJS20-04
+# 신규 기술 스택 
+AWS Jenkins
+
+# Lotto Project
 
 로또 통계 프로그램
 
