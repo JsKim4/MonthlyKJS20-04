@@ -5,8 +5,8 @@
 <mapper namespace="kr.kjs.mapper.LottoMapper">
 	<insert id="insertLotto">
 		insert into 
-		tb_lotto(drw_no, drw_no_date, first_winamnt, first_przwner_co, first_accumant, drw_no1, drw_no2, drw_no3, drw_no4, drw_no5, drw_no6, bnus_no) 
-		values(${drwNo}, ${drwNoDate}, ${firstWinamnt}, ${firstPrzwnerCo}, ${firstAccumant}, ${drwNo1}, ${drwNo2}, ${drwNo3}, ${drwNo4}, ${drwNo5}, ${drwNo6}, ${bnusNo});
+		tb_lotto(drw_no, drw_no_date,tot_sellamnt, first_winamnt, first_przwner_co, first_accumamnt, drwt_no1, drwt_no2, drwt_no3, drwt_no4, drwt_no5, drwt_no6, bnus_no) 
+		values(#{drwNo}, #{drwNoDate}, #{totSellamnt}, #{firstWinamnt}, #{firstPrzwnerCo}, #{firstAccumamnt}, #{drwtNo1}, #{drwtNo2}, #{drwtNo3}, #{drwtNo4}, #{drwtNo5}, #{drwtNo6}, #{bnusNo});
 	</insert>
 	
 	<select id="getLottoByDrwNo" resultType="kr.kjs.dto.LottoDTO">
@@ -15,13 +15,14 @@
 			drw_no_date drwNoDate, 
 			first_winamnt firstWinamnt, 
 			first_przwner_co firstPrzwnerCo, 
-			first_accumant firstAccumant, 
-			drw_no1 drwNo1, 
-			drw_no2 drwNo2, 
-			drw_no3 drwNo3, 
-			drw_no4 drwNo4, 
-			drw_no5 drwNo5, 
-			drw_no6 drwNo6, 
+			first_accumamnt firstAccumamnt, 
+			tot_sellamnt totSellamnt, 
+			drwt_no1 drwtNo1, 
+			drwt_no2 drwtNo2, 
+			drwt_no3 drwtNo3, 
+			drwt_no4 drwtNo4, 
+			drwt_no5 drwtNo5, 
+			drwt_no6 drwtNo6, 
 			bnus_no bnusNo
 		from 
 			tb_lotto

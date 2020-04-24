@@ -58,14 +58,17 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "/{drwNo}", method = RequestMethod.GET)
 	public ResponseEntity<LottoDTO> home2(@PathVariable("drwNo") String drwNo) {
-		
-		return new ResponseEntity<LottoDTO>(service.getLottoByDrwNo(drwNo),HttpStatus.OK);
+		LottoDTO responseDTO = service.getLottoByDrwNo(drwNo);
+		if(responseDTO!=null)
+			return new ResponseEntity<LottoDTO>(service.getLottoByDrwNo(drwNo),HttpStatus.OK);
+		else
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "/init/asd123qqa12sad34ds5sdvvbcvccbvbccbc681adasd/{drwNo}", method = RequestMethod.GET)
-	public ResponseEntity<LottoDTO> init(@PathVariable("drwNo") String drwNo) {
+	@RequestMapping(value = "/init/asd123qqa12sad34ds5sdvvbcvccbvbccbc681adasd/{startDrwNo}/{endDrwNo}", method = RequestMethod.GET)
+	public ResponseEntity<String> init(@PathVariable("startDrwNo") Integer startDrwNo,@PathVariable("endDrwNo") Integer endDrwNo) {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();        
 		//Add the Jackson Message converter
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
@@ -75,7 +78,15 @@ public class HomeController {
 		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));        
 		messageConverters.add(converter); 
 		restTemplate.setMessageConverters(messageConverters);
-		return new ResponseEntity<LottoDTO>(restTemplate.getForObject(LOTTO_URL+drwNo, LottoDTO.class),HttpStatus.OK);
+		Integer failCount = 0;
+		Integer successCount = 0;
+		for(int i= startDrwNo;i<=endDrwNo;i++) {
+			if(service.insertLotto(restTemplate.getForObject(LOTTO_URL+i, LottoDTO.class)))
+				successCount++;
+			else
+				failCount++;
+		}
+		return new ResponseEntity<String>("success : "+successCount+"\nFailCount : "+failCount,HttpStatus.OK);
 		
 	}
 

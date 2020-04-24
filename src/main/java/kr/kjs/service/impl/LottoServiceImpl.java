@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import kr.kjs.dto.LottoDTO;
 import kr.kjs.mapper.LottoMapper;
 import kr.kjs.service.LottoService;
+import lombok.extern.java.Log;
 
 @Service
+@Log
 public class LottoServiceImpl implements LottoService {
 
 	@Autowired
@@ -16,6 +18,7 @@ public class LottoServiceImpl implements LottoService {
 	@Override
 	public boolean insertLotto(LottoDTO lottoDTO) {
 		try {
+			log.info(lottoDTO.toString());
 			mapper.insertLotto(lottoDTO);
 		}catch(Exception e) {
 			return false;

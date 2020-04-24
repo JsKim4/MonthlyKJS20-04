@@ -17,5 +17,6 @@ public class LottoDTO {
 	private String drwNoDate;
 	private String firstWinamnt;
 	private String firstPrzwnerCo;
-	private String firstAccumant;
+	private String firstAccumamnt;
+	private String totSellamnt;
 }
