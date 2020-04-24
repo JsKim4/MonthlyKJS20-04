@@ -75,7 +75,7 @@ public class HomeController {
 		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));        
 		messageConverters.add(converter); 
 		restTemplate.setMessageConverters(messageConverters);
-		return new ResponseEntity<LottoDTO>(restTemplate.getForObject(LOTTO_URL+"819", LottoDTO.class),HttpStatus.OK);
+		return new ResponseEntity<LottoDTO>(restTemplate.getForObject(LOTTO_URL+drwNo, LottoDTO.class),HttpStatus.OK);
 		
 	}
 

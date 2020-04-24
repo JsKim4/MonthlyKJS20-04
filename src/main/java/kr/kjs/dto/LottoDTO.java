@@ -7,12 +7,12 @@ import lombok.ToString;
 @Setter @Getter @ToString
 public class LottoDTO {
 	private String drwNo;
-	private String drwNo1;
-	private String drwNo2;
-	private String drwNo3;
-	private String drwNo4;
-	private String drwNo5;
-	private String drwNo6;
+	private String drwtNo1;
+	private String drwtNo2;
+	private String drwtNo3;
+	private String drwtNo4;
+	private String drwtNo5;
+	private String drwtNo6;
 	private String bnusNo;
 	private String drwNoDate;
 	private String firstWinamnt;
