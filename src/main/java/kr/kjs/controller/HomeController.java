@@ -4,7 +4,6 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -65,8 +64,8 @@ public class HomeController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "/init/asd123qqa12sad34ds5sdvvbcvccbvbccbc681adasd", method = RequestMethod.GET)
-	public void init() {
+	@RequestMapping(value = "/init/asd123qqa12sad34ds5sdvvbcvccbvbccbc681adasd/{drwNo}", method = RequestMethod.GET)
+	public ResponseEntity<LottoDTO> init(@PathVariable("drwNo") String drwNo) {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();        
 		//Add the Jackson Message converter
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
@@ -76,8 +75,8 @@ public class HomeController {
 		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));        
 		messageConverters.add(converter); 
 		restTemplate.setMessageConverters(messageConverters);
-		log.info(restTemplate.getForObject(LOTTO_URL+"819", LottoDTO.class)+"");
-		log.info(restTemplate.getForObject(LOTTO_URL+"819", HashMap.class)+"");
+		return new ResponseEntity<LottoDTO>(restTemplate.getForObject(LOTTO_URL+"819", LottoDTO.class),HttpStatus.OK);
+		
 	}
 
 	
