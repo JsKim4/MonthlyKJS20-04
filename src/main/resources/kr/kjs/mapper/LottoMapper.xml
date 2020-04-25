@@ -31,7 +31,6 @@
 	</select>
 	
 	<select id="getLottoByDate" resultType="kr.kjs.dto.LottoDTO">
-	
 		select 
 			drw_no drwNo, 
 			drw_no_date drwNoDate, 
@@ -49,10 +48,27 @@
 		from 
 			tb_lotto
 		where
-			drw_no_date = DATE_ADD(#{searchDate},INTERVAL 7-DAYOFWEEK(#{searchDate}) day)
+			drw_no_date = DATE_ADD(#{searchDate},INTERVAL -mod(DAYOFWEEK(#{searchDate}),7) day)
 	</select>
 	
 	<select id="getLastDrwNo" resultType="int">
 		select max(drw_no) drwNo from tb_lotto; 
 	</select>
+	
+	<select id="getLottoStatList" resultType="kr.kjs.dto.LottoStat">
+		select 
+			drwt_no drwtNo,
+			count(*) count
+		from 
+			tb_lotto_stat
+		group by
+			drwt_no
+	</select>
+	
+	<insert id="insertTag">
+		<selectKey keyProperty="id" resultType="String" order="AFTER">
+	    	select max(tag_seq) FROM tb_tag
+	  	</selectKey>
+	  	insert into tb_tag(tag_name) values(#{tagName})
+	</insert>
 </mapper>

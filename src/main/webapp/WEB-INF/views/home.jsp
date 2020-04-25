@@ -7,15 +7,10 @@
 </head>
 <body> 
 	<div class="container" style="height:100%;">
-		<header>
-			<div class="row align-items-end" style="min-height:30%;margin-bottom:1%;">
-				<h2 class="font-weight-bold">Lotto Searcher</h2>
-			</div>
+		<header style="height:30%;margin-bottom:4%;">
+			<%@ include file="/WEB-INF/views/header.jsp" %>
 		</header>
 		<article>
-			<div class="row font-italic" style="margin-bottom:4%;font-size: 4px;">
-				<c:out value="회차 정보는 매주 토요일  21시 정각에 업데이트 됩니다."/>
-			</div>
 			<div class="input-group mb-3">
 				 <select class="custom-select" id="searchSelect" style="flex:1;">
 				    <option value="drw" selected>회차 검색</option>
@@ -31,7 +26,7 @@
 					<font id="status" class="badge badge-success">Success</font>
 				</div>
 			</div>
-			<div class="row font-weight-bold" style="margin-top:5%;">
+			<div class="row font-weight-bold" style="margin-top:5%;font-size:4vw;">
 				<div class="col ">1</div>
 				<div class="col ">2</div>
 				<div class="col ">3</div>
@@ -40,7 +35,7 @@
 				<div class="col ">6</div>
 				<div class="col ">B</div>
 			</div>
-			<div class="row font-italic font-weight-bold" style="margin-top:5%;height:5%;">
+			<div class="row font-italic font-weight-bold" style="margin-top:5%;height:5%;font-size:4vw;">
 				<div class="col text-primary" id="drwtNo1"></div>
 				<div class="col text-primary" id="drwtNo2"></div>
 				<div class="col text-primary" id="drwtNo3"></div>
@@ -49,7 +44,7 @@
 				<div class="col text-primary" id="drwtNo6"></div>
 				<div class="col text-danger" id="bnusNo"></div>
 			</div>
-			<button type="button" class="btn btn-primary btn-lg btn-block" style="margin-top:20%;">로또 통계</button>
+			<button onclick="location.href='<c:url  value="/statistics"/>'" type="button" class="btn btn-primary btn-lg btn-block" style="margin-top:10%;">로또 통계</button>
 			<button type="button" class="btn btn-secondary btn-lg btn-block">역대 로또 시뮬레이션</button>
 		</article>
 	</div>
