@@ -55,7 +55,7 @@ public class LottoServiceImpl implements LottoService {
 	@Override
 	public List<LottoStat> getLottoStatList(List<String>tagList) {
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.getLottoStatList(tagList);
 	}
 	
 	

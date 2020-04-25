@@ -62,6 +62,8 @@
 		from 
 			tb_lotto_stat
 		group by
+			drwt_no 
+		order by 
 			drwt_no
 	</select>
 	

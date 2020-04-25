@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import kr.kjs.dto.LottoDTO;
+import kr.kjs.dto.LottoStat;
 import kr.kjs.service.LottoService;
 import lombok.extern.java.Log;
 
@@ -72,4 +73,16 @@ public class HomeController {
 			return new ResponseEntity(HttpStatus.FOUND);
 	}
 
+	
+	@ResponseBody
+	@RequestMapping(value = "/statistics/list", method = RequestMethod.GET)
+	public ResponseEntity<List<LottoStat>> getLottoStatList() {
+		List<LottoStat> responseDTO = service.getLottoStatList(null);
+		log.info(String.valueOf(responseDTO));
+		if (responseDTO != null)
+			return new ResponseEntity<List<LottoStat>>(responseDTO, HttpStatus.OK);
+		else
+			return new ResponseEntity(HttpStatus.FOUND);
+	}
+	
 }

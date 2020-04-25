@@ -18,5 +18,24 @@ var lottoService =(function(){
 			}
 		});
 	}
-	return {getLottoNumber:getLottoNumber};
+	
+	function getLottoStatList(callback,error){
+		$.ajax({
+			type:'get',
+			url:'statistics/list',
+			contentType : "application/json; charset=utf-8", 
+			success : function(result,status,xhr){ 
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function(xhr,status,er){
+				if(error){
+					error();
+				}
+			}
+		});
+	}
+	return {getLottoNumber:getLottoNumber,
+		getLottoStatList:getLottoStatList};
 })();

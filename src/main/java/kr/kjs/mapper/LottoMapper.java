@@ -17,7 +17,7 @@ public interface LottoMapper {
 	
 	public Integer getLastDrwNo();
 	
-	public List<LottoStat> getLottoStatList(@Param("tagList")String tagList[]);
+	public List<LottoStat> getLottoStatList(@Param("tagList")List<String> tagList);
 	
 	public String insertTag(String tagName);
 	
