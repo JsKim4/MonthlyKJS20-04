@@ -1,43 +1,58 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <head>
 	<title>LOTTO MAIN</title>
 </head>
 <body> 
-	<div style="max-height:50vh;text-align:center;padding-top:20vh;font-size:10vh;display: flex;">
-		<div id="lottoDate" style="width:100%;text-align:center;font-size:1vw;"></div>
-	</div>
-	<div style="text-align:center;font-size:10vh;display: flex;">
-		<div style="flex:1;text-align: right;padding:1vw;">
-			<label style="height:6vw;font-size:3vw;max-width:12vw;">회차 입력  </label>
-			<input type="number" id="order" style="height: 100%;font-size:5vw;max-width:12vw;" value="">
+	<div class="container" style="height:100%;">
+		<div class="row align-items-end" style="min-height:30%;margin-bottom:5%;">
+			<h2 class="font-weight-bold">Lotto Searcher</h2>
 		</div>
-		<div style="flex:1;text-align: left;padding-left:1vw;">
-			<ul style="font-size:3vw;list-style-type:none;white-space:nowrap;">
-				<li id="drwtNo1" style="float:left; margin:0 1vw 0 1vw"></li>
-				<li id="drwtNo2" style="float:left; margin:0 1vw 0 1vw"></li>
-				<li id="drwtNo3" style="float:left; margin:0 1vw 0 1vw"></li>
-				<li id="drwtNo4" style="float:left; margin:0 1vw 0 1vw"></li>
-				<li id="drwtNo5" style="float:left; margin:0 1vw 0 1vw"></li>
-				<li id="drwtNo6" style="float:left; margin:0 1vw 0 1vw"></li>
-				<li id="bnusNo" style="float:left; margin:0 1vw 0 1vw;color:red;"></li>
-			</ul>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+			<!-- 	<button class="btn btn-outline-secondary dropdown-toggle" value="drw"
+				 type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">분류</button> -->
+				<div class="dropdown-menu">
+			  		<a id="dateSearch" class="dropdown-item">날짜로 검색</a>
+			    	<a id="drwSearch" class="dropdown-item">회차로 검색</a>
+			  	</div>
+			</div>
+			<input type="text" id="order" class="form-control" placeholder="회자 정보를 입력해 주십시요" aria-label="Text input with dropdown button">
 		</div>
-	</div>
-	
-	<div style="max-height:50vh;text-align:center;font-size:10vh;display: flex;">
-		<div style="flex:1;text-align: right;padding:1vw;">
-			<input type="button" value="로또 분석 통계">
+		<div class="row">
+			<div class="col-2">
+				<font class="font-weight-bold" id="lottoDate"></font>
+			</div>
+			<div class="col-2 ml-auto">
+				<font id="status" class="badge badge-success">Success</font>
+			</div>
 		</div>
-		<div style="flex:1;text-align: left;padding:1vw;">
-			<input type="button" value="역대 로또 시뮬레이션">
+		<div class="row font-weight-bold" style="margin-top:5%;">
+			<div class="col text-primary">1</div>
+			<div class="col text-primary">2</div>
+			<div class="col text-primary">3</div>
+			<div class="col text-primary">4</div>
+			<div class="col text-primary">5</div>
+			<div class="col text-primary">6</div>
+			<div class="col text-danger">B</div>
 		</div>
+		<div class="row font-italic" style="margin-top:5%;">
+			<div class="col" id="drwtNo1"></div>
+			<div class="col" id="drwtNo2"></div>
+			<div class="col" id="drwtNo3"></div>
+			<div class="col" id="drwtNo4"></div>
+			<div class="col" id="drwtNo5"></div>
+			<div class="col" id="drwtNo6"></div>
+			<div class="col" id="bnusNo"></div>
+		</div>
+		
 	</div>
 </body>
-<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/Lotto.js?ver=12" />"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -45,7 +60,8 @@ $(document).ready(function(){
 		if(this.value==='')
 			return;
 		lottoService.getLottoNumber(this.value,function(result){
-			if(result==='')
+			document.getElementById('status').className = "badge badge-success";
+			document.getElementById('status').innerHTML = "Success";
 			$("#drwtNo1").html(result.drwtNo1);
 			$("#drwtNo2").html(result.drwtNo2);
 			$("#drwtNo3").html(result.drwtNo3);
@@ -56,8 +72,8 @@ $(document).ready(function(){
 			$("#lottoDate").html(result.drwNoDate);
 		},
 		function(){
-			document.getElementById('order').value = null;
-			alert("존재하지 않는 회차번호 입니다.");
+			document.getElementById('status').className = "badge badge-danger";
+			document.getElementById('status').innerHTML ="Fail";
 		});
 	});
 });
