@@ -7,47 +7,51 @@
 </head>
 <body> 
 	<div class="container" style="height:100%;">
-		<div class="row align-items-end" style="min-height:30%;margin-bottom:5%;">
-			<h2 class="font-weight-bold">Lotto Searcher</h2>
-		</div>
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-			<!-- 	<button class="btn btn-outline-secondary dropdown-toggle" value="drw"
-				 type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">분류</button> -->
-				<div class="dropdown-menu">
-			  		<a id="dateSearch" class="dropdown-item">날짜로 검색</a>
-			    	<a id="drwSearch" class="dropdown-item">회차로 검색</a>
-			  	</div>
+		<header>
+			<div class="row align-items-end" style="min-height:30%;margin-bottom:1%;">
+				<h2 class="font-weight-bold">Lotto Searcher</h2>
 			</div>
-			<input type="text" id="order" class="form-control" placeholder="회자 정보를 입력해 주십시요" aria-label="Text input with dropdown button">
-		</div>
-		<div class="row">
-			<div class="col-2">
-				<font class="font-weight-bold" id="lottoDate"></font>
+		</header>
+		<article>
+			<div class="row font-italic" style="margin-bottom:4%;font-size: 4px;">
+				회차 정보는 매주 토요일 21시에 업데이트 됩니다.
 			</div>
-			<div class="col-2 ml-auto">
-				<font id="status" class="badge badge-success">Success</font>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<div class="dropdown-menu">
+				  		<a id="dateSearch" class="dropdown-item">날짜로 검색</a>
+				    	<a id="drwSearch" class="dropdown-item">회차로 검색</a>
+				  	</div>
+				</div>
+				<input type="number" id="order" class="form-control" placeholder="회자 정보를 입력해 주십시요" aria-label="Text input with dropdown button">
 			</div>
-		</div>
-		<div class="row font-weight-bold" style="margin-top:5%;">
-			<div class="col text-primary">1</div>
-			<div class="col text-primary">2</div>
-			<div class="col text-primary">3</div>
-			<div class="col text-primary">4</div>
-			<div class="col text-primary">5</div>
-			<div class="col text-primary">6</div>
-			<div class="col text-danger">B</div>
-		</div>
-		<div class="row font-italic" style="margin-top:5%;">
-			<div class="col" id="drwtNo1"></div>
-			<div class="col" id="drwtNo2"></div>
-			<div class="col" id="drwtNo3"></div>
-			<div class="col" id="drwtNo4"></div>
-			<div class="col" id="drwtNo5"></div>
-			<div class="col" id="drwtNo6"></div>
-			<div class="col" id="bnusNo"></div>
-		</div>
-		
+			<div class="row">
+				<div class="col-2">
+					<font class="font-weight-bold" id="lottoDate"></font>
+				</div>
+				<div class="col-2 ml-auto">
+					<font id="status" class="badge badge-success">Success</font>
+				</div>
+			</div>
+			<div class="row font-weight-bold" style="margin-top:5%;">
+				<div class="col text-primary">1</div>
+				<div class="col text-primary">2</div>
+				<div class="col text-primary">3</div>
+				<div class="col text-primary">4</div>
+				<div class="col text-primary">5</div>
+				<div class="col text-primary">6</div>
+				<div class="col text-danger">B</div>
+			</div>
+			<div class="row font-italic" style="margin-top:5%;">
+				<div class="col" id="drwtNo1"></div>
+				<div class="col" id="drwtNo2"></div>
+				<div class="col" id="drwtNo3"></div>
+				<div class="col" id="drwtNo4"></div>
+				<div class="col" id="drwtNo5"></div>
+				<div class="col" id="drwtNo6"></div>
+				<div class="col" id="bnusNo"></div>
+			</div>
+		</article>
 	</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -73,7 +77,7 @@ $(document).ready(function(){
 		},
 		function(){
 			document.getElementById('status').className = "badge badge-danger";
-			document.getElementById('status').innerHTML ="Fail";
+			document.getElementById('status').innerHTML = "Fail";
 		});
 	});
 });
