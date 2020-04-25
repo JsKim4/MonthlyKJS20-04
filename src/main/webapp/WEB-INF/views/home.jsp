@@ -40,7 +40,7 @@
 				<div class="col ">6</div>
 				<div class="col ">B</div>
 			</div>
-			<div class="row font-italic font-weight-bold" style="margin-top:5%;">
+			<div class="row font-italic font-weight-bold" style="margin-top:5%;height:5%;">
 				<div class="col text-primary" id="drwtNo1"></div>
 				<div class="col text-primary" id="drwtNo2"></div>
 				<div class="col text-primary" id="drwtNo3"></div>
@@ -49,6 +49,8 @@
 				<div class="col text-primary" id="drwtNo6"></div>
 				<div class="col text-danger" id="bnusNo"></div>
 			</div>
+			<button type="button" class="btn btn-primary btn-lg btn-block" style="margin-top:20%;">로또 통계</button>
+			<button type="button" class="btn btn-secondary btn-lg btn-block">역대 로또 시뮬레이션</button>
 		</article>
 	</div>
 </body>
