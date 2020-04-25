@@ -6,4 +6,6 @@ public interface LottoService {
 	public boolean insertLotto(LottoDTO lottoDTO);
 	
 	public LottoDTO getLottoByDrwNo(String drwNo);
+	
+	public Integer getLastDrwNo();
 }

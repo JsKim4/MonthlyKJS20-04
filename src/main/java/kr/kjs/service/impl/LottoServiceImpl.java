@@ -33,4 +33,10 @@ public class LottoServiceImpl implements LottoService {
 		return mapper.getLottoByDrwNo(drwNo);
 	}
 
+	@Override
+	public Integer getLastDrwNo() {
+		return mapper.getLastDrwNo();
+	}
+
+	
 }

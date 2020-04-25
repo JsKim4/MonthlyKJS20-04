@@ -9,4 +9,6 @@ public interface LottoMapper {
 	public void insertLotto(LottoDTO lottoDTO);
 	
 	public LottoDTO getLottoByDrwNo(@Param("drwNo")String drwNo);
+	
+	public Integer getLastDrwNo();
 }

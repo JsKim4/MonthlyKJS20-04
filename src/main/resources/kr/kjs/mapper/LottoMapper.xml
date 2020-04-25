@@ -29,4 +29,8 @@
 		where
 			drw_no=${drwNo}
 	</select>
+	
+	<select id="getLastDrwNo" resultType="int">
+		select max(drw_no) drwNo from tb_lotto; 
+	</select>
 </mapper>
