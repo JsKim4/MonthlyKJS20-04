@@ -60,11 +60,12 @@ public class HomeController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/{drwNo}", method = RequestMethod.GET)
-	public ResponseEntity<LottoDTO> home2(@PathVariable("drwNo") String drwNo) {
-		LottoDTO responseDTO = service.getLottoByDrwNo(drwNo);
+	@RequestMapping(value = "/{type}/{data}", method = RequestMethod.GET)
+	public ResponseEntity<LottoDTO> home2(@PathVariable("data") String data,@PathVariable("type") String type) {
+		log.info(data+type);
+		LottoDTO responseDTO = service.getLotto(data,type);
 		if (responseDTO != null)
-			return new ResponseEntity<LottoDTO>(service.getLottoByDrwNo(drwNo), HttpStatus.OK);
+			return new ResponseEntity<LottoDTO>(responseDTO, HttpStatus.OK);
 		else
 			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}

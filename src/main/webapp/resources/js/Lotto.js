@@ -1,10 +1,10 @@
 var lottoService =(function(){
 	console.log("Lotto Init");
-	function getLottoNumber(drwNo,callback,error){
-		console.log(drwNo)
+	function getLottoNumber(type,data,callback,error){
+		console.log(data);
 		$.ajax({
 			type:'get',
-			url:drwNo,
+			url:type+'/'+data,
 			contentType : "application/json; charset=utf-8", 
 			success : function(result,status,xhr){ 
 				if(callback){

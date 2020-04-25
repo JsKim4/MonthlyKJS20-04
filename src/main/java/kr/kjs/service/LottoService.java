@@ -5,7 +5,7 @@ import kr.kjs.dto.LottoDTO;
 public interface LottoService {
 	public boolean insertLotto(LottoDTO lottoDTO);
 	
-	public LottoDTO getLottoByDrwNo(String drwNo);
+	public LottoDTO getLotto(String data,String type);
 	
 	public Integer getLastDrwNo();
 }

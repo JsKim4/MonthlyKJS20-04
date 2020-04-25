@@ -28,9 +28,13 @@ public class LottoServiceImpl implements LottoService {
 	}
 
 	@Override
-	public LottoDTO getLottoByDrwNo(String drwNo) {
+	public LottoDTO getLotto(String data,String type) {
 		// TODO Auto-generated method stub
-		return mapper.getLottoByDrwNo(drwNo);
+		if(type.equals("drw"))
+			return mapper.getLottoByDrwNo(data);
+		if(type.equals("date"))
+			return mapper.getLottoByDate(data);
+		return null;
 	}
 
 	@Override

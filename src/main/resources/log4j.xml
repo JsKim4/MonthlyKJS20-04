@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="kr.kjs.controller">
-		<level value="info" />
+		<level value="warn" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->

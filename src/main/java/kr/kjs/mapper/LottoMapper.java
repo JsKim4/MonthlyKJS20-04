@@ -10,5 +10,7 @@ public interface LottoMapper {
 	
 	public LottoDTO getLottoByDrwNo(@Param("drwNo")String drwNo);
 	
+	public LottoDTO getLottoByDate(@Param("searchDate")String date);
+	
 	public Integer getLastDrwNo();
 }
