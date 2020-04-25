@@ -5,6 +5,8 @@ AWS
 
 Jenkins
 
+Spring Scheduler
+
 # Lotto Project
 
 로또 통계 프로그램
