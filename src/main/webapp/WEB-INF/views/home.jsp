@@ -46,7 +46,7 @@
 <script type="text/javascript" src="<c:url value="/resources/js/Lotto.js?ver=132" />"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	lottoService.getLottoNumber('drw',907,function(result){
+	lottoService.getLottoNumber('drw',${lastDrwNo},function(result){
 		document.getElementById('status').className = "badge badge-success";
 		document.getElementById('status').innerHTML = "Success";
 		$("#drwtNo1").html(result.drwtNo1);
