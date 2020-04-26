@@ -48,9 +48,21 @@
 			</ul>
 			</div>
 			<div class="drwtList">
-				<h2>
-					Tag List
-				</h2>
+				<div class="row align-items-end">
+					<h2 class="font-weight-bold">Tag List</h2>
+				</div>
+				<div class="row  text-secondary" style="font-size: 4px;">
+					<c:out value="Tag가 회색일때는 선택되지 않은 상태입니다."/>
+				</div>
+				<div class="row  text-primary" style="font-size: 4px;">
+					<c:out value="Tag가 파란색일때는 Or조건으로 선택된 상태입니다."/>
+				</div>
+				<div class="row  text-danger" style="font-size: 4px;">
+					<c:out value="Tag가 붉은색일때는 And 조건으로 선택된 상태입니다."/>
+				</div>
+				<div class="row  text-info" style="font-size: 4px;">
+					<c:out value="Or 조건 연산이 완료된 후 And 조건을 연산합니다."/>
+				</div>
 				<ul>
 					<li class="tag">
 						<button type="button" class="btn btn-primary btn-sm">전체</button>
