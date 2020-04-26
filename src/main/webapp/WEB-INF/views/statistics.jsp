@@ -4,19 +4,34 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <head>
 	<style>
+		.drwtList{
+			width:45%;
+			height:80%;
+			float:left;
+			margin-right:4%;
+		}
 		ul{
 			list-style:none;
 			width:100%;
+			height:100%;
 		}
 		li{
-			width:10%;
-			height:10%;
+			width:14%;
+			height:14%;
 			padding:3%;
-			font-size:160%;
+			font-size:100%;
 			margin:0;
 			font-weight: 700!important;
 			background-color:--blue;
 			float:left;
+		}
+		li.tag{
+			width:33%;
+			height:5%;
+			padding:1%;
+		}
+		button{
+			width:100%;
 		}
 	</style>
 	<title>LOTTO STATISICS</title>
@@ -27,9 +42,90 @@
 			<%@ include file="/WEB-INF/views/header.jsp" %>
 		</header>
 		<article>
+			<div class="drwtList">
 			<ul id="drwtNo">
 				
 			</ul>
+			</div>
+			<div class="drwtList">
+				<h2>
+					Tag List
+				</h2>
+				<ul>
+					<li class="tag">
+						<button type="button" class="btn btn-primary btn-sm">전체</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">봄</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">여름</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">가을</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">겨울</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">당첨금 10억 이상</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">당첨금 5억 이상</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">당첨금 1억 이상</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">당첨자 1명</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">당첨자 2~4명</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">당첨자 5~10명</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">당첨자 10명 이상</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">2020년</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">2019년</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">2018년</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">2017년</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">2016년</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">2015년</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">2014년</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">2013년</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">2012년</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">2011년</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">2010년</button>
+					</li>
+					<li class="tag">
+						<button type="button" class="btn btn-secondary btn-sm">2009년</button>
+					</li>
+				</ul>
+			</div>
 		</article>
 	</div>
 </body>
@@ -41,9 +137,21 @@
 	lottoService.getLottoStatList(function(result){
 		var str="";
 		var max = 0;
+		var min = 10000;
 		var j = 0;
+		for(var i=0;i<result.length;i++){
+			if(parseInt(result[i].count) > max)
+				max = parseInt(result[i].count);
+			if(parseInt(result[i].count)< min)
+				min = parseInt(result[i].count);
+		}
+		if(result.length<45)
+			min = 0;
+		min/=1.2;
+		max-=min;
 		for(var i=1;i<=45;i++){
-			str+="<li value='"+((j<result.length)&&(parseInt(result[j].drwtNo)===i)?result[j++].count:0)+"'>"+i+"</li>"
+			var num = ((j<result.length)&&(parseInt(result[j].drwtNo)===i)?result[j++].count:0);
+			str+="<li style='background:rgba(31,154,223,"+(num-min)/max+")' value='"+num+"'>"+i+"</li>";
 		}
 		$("#drwtNo").html(str);
 	});

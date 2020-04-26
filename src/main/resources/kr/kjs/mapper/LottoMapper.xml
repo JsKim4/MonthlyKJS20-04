@@ -61,8 +61,6 @@
 			count(*) count
 		from 
 			tb_lotto_stat
-		where
-			drw_no>900
 		group by
 			drwt_no 
 		order by 

@@ -26,23 +26,14 @@
 					<font id="status" class="badge badge-success">Success</font>
 				</div>
 			</div>
-			<div class="row font-weight-bold" style="margin-top:5%;font-size:4vw;">
-				<div class="col ">1</div>
-				<div class="col ">2</div>
-				<div class="col ">3</div>
-				<div class="col ">4</div>
-				<div class="col ">5</div>
-				<div class="col ">6</div>
-				<div class="col ">B</div>
-			</div>
 			<div class="row font-italic font-weight-bold" style="margin-top:5%;height:5%;font-size:4vw;">
-				<div class="col text-primary" id="drwtNo1"></div>
-				<div class="col text-primary" id="drwtNo2"></div>
-				<div class="col text-primary" id="drwtNo3"></div>
-				<div class="col text-primary" id="drwtNo4"></div>
-				<div class="col text-primary" id="drwtNo5"></div>
-				<div class="col text-primary" id="drwtNo6"></div>
-				<div class="col text-danger" id="bnusNo"></div>
+				<div class="col text-primary" id="drwtNo1">1</div>
+				<div class="col text-primary" id="drwtNo2">2</div>
+				<div class="col text-primary" id="drwtNo3">3</div>
+				<div class="col text-primary" id="drwtNo4">4</div>
+				<div class="col text-primary" id="drwtNo5">5</div>
+				<div class="col text-primary" id="drwtNo6">6</div>
+				<div class="col text-danger" id="bnusNo">B</div>
 			</div>
 			<button onclick="location.href='<c:url  value="/statistics"/>'" type="button" class="btn btn-primary btn-lg btn-block" style="margin-top:10%;">로또 통계</button>
 			<button type="button" class="btn btn-secondary btn-lg btn-block">역대 로또 시뮬레이션</button>
@@ -55,6 +46,24 @@
 <script type="text/javascript" src="<c:url value="/resources/js/Lotto.js?ver=132" />"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	lottoService.getLottoNumber('drw',907,function(result){
+		document.getElementById('status').className = "badge badge-success";
+		document.getElementById('status').innerHTML = "Success";
+		$("#drwtNo1").html(result.drwtNo1);
+		$("#drwtNo2").html(result.drwtNo2);
+		$("#drwtNo3").html(result.drwtNo3);
+		$("#drwtNo4").html(result.drwtNo4);
+		$("#drwtNo5").html(result.drwtNo5);
+		$("#drwtNo6").html(result.drwtNo6);
+		$("#bnusNo").html(result.bnusNo);
+		$("#lottoDate").html(result.drwNoDate);
+	},
+	function(){
+		document.getElementById('status').className = "badge badge-danger";
+		document.getElementById('status').innerHTML = "Fail";
+	});
+	
+	
 	$("#order").on("propertychange change paste input", function() {
 		console.log(this.value);
 		if(this.value==='')
