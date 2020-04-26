@@ -39,7 +39,13 @@
 <script type="text/javascript" src="<c:url value="/resources/js/Lotto.js?ver=2" />"></script>
 <script type="text/javascript">
 	lottoService.getLottoStatList(function(result){
-		console.log(result)
+		var str="";
+		var max = 0;
+		var j = 0;
+		for(var i=1;i<=45;i++){
+			str+="<li value='"+((j<result.length)&&(parseInt(result[j].drwtNo)===i)?result[j++].count:0)+"'>"+i+"</li>"
+		}
+		$("#drwtNo").html(str);
 	});
 </script>
 </html>
