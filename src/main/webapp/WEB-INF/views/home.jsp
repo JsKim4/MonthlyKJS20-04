@@ -46,7 +46,7 @@
 <script type="text/javascript" src="<c:url value="/resources/js/Lotto.js?ver=132" />"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	lottoService.getLottoNumber('drw',${lastDrwNo},function(result){
+	lottoService.getLottoNumber('drw','${lastDrwNo}',function(result){
 		document.getElementById('status').className = "badge badge-success";
 		document.getElementById('status').innerHTML = "Success";
 		$("#drwtNo1").html(result.drwtNo1);
@@ -66,8 +66,25 @@ $(document).ready(function(){
 	
 	$("#order").on("propertychange change paste input", function() {
 		console.log(this.value);
-		if(this.value==='')
+		if(this.value===''){
+			lottoService.getLottoNumber('drw','${lastDrwNo}',function(result){
+				document.getElementById('status').className = "badge badge-success";
+				document.getElementById('status').innerHTML = "Success";
+				$("#drwtNo1").html(result.drwtNo1);
+				$("#drwtNo2").html(result.drwtNo2);
+				$("#drwtNo3").html(result.drwtNo3);
+				$("#drwtNo4").html(result.drwtNo4);
+				$("#drwtNo5").html(result.drwtNo5);
+				$("#drwtNo6").html(result.drwtNo6);
+				$("#bnusNo").html(result.bnusNo);
+				$("#lottoDate").html(result.drwNoDate);
+			},
+			function(){
+				document.getElementById('status').className = "badge badge-danger";
+				document.getElementById('status').innerHTML = "Fail";
+			});
 			return;
+		}
 		
 		var data = this.value+"";
 		var type = document.getElementById('searchSelect').value;
