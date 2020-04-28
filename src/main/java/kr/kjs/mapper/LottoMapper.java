@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.kjs.dto.LottoDTO;
 import kr.kjs.dto.LottoStat;
+import kr.kjs.dto.TagSimpleInfo;
 @Mapper
 public interface LottoMapper {
 	public void insertLotto(LottoDTO lottoDTO);
@@ -21,5 +22,12 @@ public interface LottoMapper {
 	
 	public String insertTag(String tagName);
 	
-	public void insertLottoTag(@Param("tagSesq")String tagSeq,@Param("lottoList") String drwNo);
+	public void insertLottoTag(@Param("tagSesq")String tagSeq,@Param("drwNo") String drwNo);
+	
+	public int modifyTagName(TagSimpleInfo tagSimpleInfo);
+	
+	public int deleteTag(String tagSeq);
+	
+	public int deleteLottoTag(@Param("tagSesq")String tagSeq,@Param("drwNo") String drwNo);
+	
 }

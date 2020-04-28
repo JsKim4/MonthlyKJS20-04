@@ -73,4 +73,9 @@
 	  	</selectKey>
 	  	insert into tb_tag(tag_name) values(#{tagName})
 	</insert>
+	
+	<insert id="insertLottoTag">
+		insert into tb_tag_list(tag_seq,drw_no) values(#{tagSesq},#{drwNo})
+	</insert>
+	
 </mapper>

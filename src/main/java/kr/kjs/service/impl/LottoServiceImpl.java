@@ -33,7 +33,6 @@ public class LottoServiceImpl implements LottoService {
 
 	@Override
 	public LottoDTO getLotto(String data,String type) {
-		// TODO Auto-generated method stub
 		if(type.equals("drw"))
 			return mapper.getLottoByDrwNo(data);
 		if(type.equals("date"))
@@ -49,12 +48,17 @@ public class LottoServiceImpl implements LottoService {
 	@Override
 	public void insertTag(TagInsertInfo tagInsertInfo) {
 		String tagSeq = mapper.insertTag(tagInsertInfo.getTagName());
-		
+		for(String drwNo:tagInsertInfo.getDrwList()) {
+			try {
+				mapper.insertLottoTag(tagSeq, drwNo);
+			}catch(Exception e) {
+				continue;
+			}
+		}
 	}
 
 	@Override
 	public List<LottoStat> getLottoStatList(List<String>tagList) {
-		// TODO Auto-generated method stub
 		return mapper.getLottoStatList(tagList);
 	}
 	
