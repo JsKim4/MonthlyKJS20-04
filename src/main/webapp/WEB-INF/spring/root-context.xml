@@ -41,7 +41,7 @@
 		<constructor-arg ref="hikariConfig" />
 	</bean>
 	
-	
+<!-- 	
 	<bean id="adminSource" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
 		<constructor-arg ref="adminHikariConfig" />
@@ -50,7 +50,7 @@
 	<bean id="adminSqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="adminSource"></property>
-	</bean>
+	</bean> -->
 	
 
 	<bean id="sqlSessionFactory"
@@ -59,7 +59,7 @@
 	</bean>
 
 	<mybatis-spring:scan base-package="kr.kjs.mapper"  factory-ref="sqlSessionFactory"/>
-	
-	<mybatis-spring:scan base-package="kr.kjs.admin_mapper"  factory-ref="adminSqlSessionFactory"/>
+	<!-- 
+	<mybatis-spring:scan base-package="kr.kjs.admin_mapper"  factory-ref="adminSqlSessionFactory"/> -->
 	
 </beans>
