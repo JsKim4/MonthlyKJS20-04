@@ -23,6 +23,7 @@ public class AdminMapperTest {
 	@Test
 	public void test() {
 		ProjectHistoryInsertDTO historyDTO = new ProjectHistoryInsertDTO("done", "test내용");
-		mapper.insertHistory(historyDTO);
+		mapper.insertHistory(historyDTO);mapper.insertHistory(historyDTO);
+		mapper.insertHistory(historyDTO);mapper.insertHistory(historyDTO);
 	}
 }
