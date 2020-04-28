@@ -22,20 +22,44 @@
 		<property name="username" value="lotto_user"></property>
 		<property name="password" value="lotto_password"></property>
 	</bean>
+	
+	
+	<bean id="adminHikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<!-- driverName = 생략가능 -->
+		<property name="driverClassName"
+			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		<property name="jdbcUrl"
+			value="jdbc:log4jdbc:mysql://localhost:3306/admin_db?useSSL=true&amp;useUnicode=yes&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Seoul"></property>
+		<property name="username" value="admin_id"></property>
+		<property name="password" value="admin_password"></property>
+	</bean>
+	
 
-	<!-- HikariCP configuration -->
+
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
 	</bean>
+	
+	
+	<bean id="adminSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<constructor-arg ref="adminHikariConfig" />
+	</bean>
+
+	<bean id="adminSqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="adminSource"></property>
+	</bean>
+	
 
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 
-	<mybatis-spring:scan base-package="kr.kjs.mapper" />
+	<mybatis-spring:scan base-package="kr.kjs.mapper"  factory-ref="sqlSessionFactory"/>
 	
-	
+	<mybatis-spring:scan base-package="kr.kjs.admin_mapper"  factory-ref="adminSqlSessionFactory"/>
 	
 </beans>
