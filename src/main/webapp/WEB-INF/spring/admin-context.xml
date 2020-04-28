@@ -9,30 +9,28 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	<context:component-scan base-package="kr.kjs.service" />
-	<bean id="restTemplate"
-		class="org.springframework.web.client.RestTemplate" />
-	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		
+	<bean id="adminHikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<!-- driverName = 생략가능 -->
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:mysql://localhost:3306/lotto_db?useSSL=true&amp;useUnicode=yes&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Seoul"></property>
-		<property name="username" value="lotto_user"></property>
-		<property name="password" value="lotto_password"></property>
-	</bean>
+			value="jdbc:log4jdbc:mysql://localhost:3306/admin_db?useSSL=true&amp;useUnicode=yes&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Seoul"></property>
+		<property name="username" value="admin_id"></property>
+		<property name="password" value="admin_password"></property>
+	</bean>	
 	
-	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+	<bean id="adminSource" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
-		<constructor-arg ref="hikariConfig" />
+		<constructor-arg ref="adminHikariConfig" />
 	</bean>
-	
-	<bean id="sqlSessionFactory"
+
+	<bean id="adminSqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
+		<property name="dataSource" ref="adminSource"></property>
 	</bean>
+
 	
-	<mybatis-spring:scan base-package="kr.kjs.mapper"  factory-ref="sqlSessionFactory"/>
+	<mybatis-spring:scan base-package="kr.kjs.admin.mapper"  factory-ref="adminSqlSessionFactory"/>
 	
 </beans>

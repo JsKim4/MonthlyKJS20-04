@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.kjs.admin.dto.ProjectHistoryInsertDTO;
+import kr.kjs.admin.mapper.AdminMapper;
 import kr.kjs.dto.LottoDTO;
 import kr.kjs.dto.LottoStat;
 import kr.kjs.dto.TagInsertInfo;
@@ -19,12 +21,17 @@ public class LottoServiceImpl implements LottoService {
 	@Autowired
 	LottoMapper mapper;
 	
+	@Autowired
+	AdminMapper adminMapper;
+	
 	@Override
 	public boolean insertLotto(LottoDTO lottoDTO) {
 		try {
 			log.info(lottoDTO.toString());
 			mapper.insertLotto(lottoDTO);
+			adminMapper.insertHistory(new ProjectHistoryInsertDTO("done","주간 로또 자동 insert가 성공적으로 종료되었습니다."));
 		}catch(Exception e) {
+			adminMapper.insertHistory(new ProjectHistoryInsertDTO("exception","주간 로또 자동 insert가 실패하였습니다."));
 			return false;
 		}
 		return true;
