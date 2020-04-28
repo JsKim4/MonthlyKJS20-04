@@ -37,6 +37,7 @@
 			</div>
 			<button onclick="location.href='<c:url  value="/statistics"/>'" type="button" class="btn btn-primary btn-lg btn-block" style="margin-top:10%;">로또 통계</button>
 			<button type="button" class="btn btn-secondary btn-lg btn-block">역대 로또 시뮬레이션</button>
+			<a href="<c:url  value="/admin/login"/>">admin login</a>
 		</article>
 	</div>
 </body>

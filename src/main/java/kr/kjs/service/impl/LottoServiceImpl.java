@@ -53,20 +53,31 @@ public class LottoServiceImpl implements LottoService {
 	}
 
 	@Override
-	public void insertTag(TagInsertInfo tagInsertInfo) {
-		String tagSeq = mapper.insertTag(tagInsertInfo.getTagName());
-		for(String drwNo:tagInsertInfo.getDrwList()) {
-			try {
-				mapper.insertLottoTag(tagSeq, drwNo);
-			}catch(Exception e) {
-				continue;
-			}
-		}
+	public String insertTag(String name) {
+		String seq = mapper.insertTag(name);
+		return seq;
 	}
 
 	@Override
 	public List<LottoStat> getLottoStatList(List<String>tagList) {
 		return mapper.getLottoStatList(tagList);
+	}
+
+	@Override
+	public int insertTagList(TagInsertInfo tagInsertInfo) {
+		int fail = 0;
+		String tagSeq = tagInsertInfo.getTagSeq();
+		for(String drwNo:tagInsertInfo.getDrwList()) {
+			try {
+				mapper.insertLottoTag(tagSeq, drwNo);
+			}catch(Exception e) {
+				fail++;
+				continue;
+			}
+		}
+		if(fail!=0) 
+			adminMapper.insertHistory(new ProjectHistoryInsertDTO("warn","tagInsert 실패 보고 "+fail+"/"+tagInsertInfo.getDrwList().size()));
+		return fail;
 	}
 	
 	

@@ -10,6 +10,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 		
+	<context:component-scan base-package="kr.kjs.admin.service" />
 	<bean id="adminHikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<!-- driverName = 생략가능 -->
 		<property name="driverClassName"

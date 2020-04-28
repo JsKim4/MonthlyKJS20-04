@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,13 +17,18 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import kr.kjs.admin.dto.AdminLoginDTO;
+import kr.kjs.admin.service.AdminService;
+import kr.kjs.admin.vo.ProjectVO;
 import kr.kjs.dto.LottoDTO;
 import kr.kjs.dto.LottoStat;
+import kr.kjs.dto.TagInsertInfo;
 import kr.kjs.service.LottoService;
 import lombok.extern.java.Log;
 
@@ -33,6 +41,9 @@ public class HomeController {
 	@Autowired
 	LottoService service;
 
+	@Autowired
+	AdminService adminService;
+	
 	@Autowired
 	RestTemplate restTemplate;
 
@@ -49,7 +60,16 @@ public class HomeController {
 	
 	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
 	public void statistics() {}
-
+	
+	
+	@RequestMapping(value = "/admin/tag", method = RequestMethod.GET)
+	public String tag(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.getAttribute(ProjectVO.PROJECT_ID+ProjectVO.ADMIN_LOGIN)!=null)
+			return "admin/tag";
+		return "redirect:/admin/login";
+	}
+	
 	@Scheduled(cron = "0 0 21 * * 7")
 	public void insertSchedule() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
@@ -86,5 +106,42 @@ public class HomeController {
 		else
 			return new ResponseEntity(HttpStatus.FOUND);
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/tag/insert", method = RequestMethod.POST)
+	public ResponseEntity<String> insertTag(String name) {
+		return new ResponseEntity<String>(service.insertTag(name),HttpStatus.OK);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/tag/insert/list", method = RequestMethod.POST)
+	public ResponseEntity<String> insertTagList(@RequestBody TagInsertInfo tagInsertInfo) {
+		int fail = service.insertTagList(tagInsertInfo);
+		return new ResponseEntity<String>(fail==0?"success":"몇몇 실패케이스가 존재합니다. ",HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/admin/login", method = RequestMethod.GET)
+	public void adminLogin() {}
+	
+	@ResponseBody
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResponseEntity<String> login(@RequestBody AdminLoginDTO loginDTO,HttpServletRequest request) {
+		log.info(String.valueOf(loginDTO));
+		if(adminService.login(loginDTO)) {
+			HttpSession session = request.getSession();
+			session.setAttribute(ProjectVO.PROJECT_ID+ProjectVO.ADMIN_LOGIN, "true");
+			return new ResponseEntity("success",HttpStatus.OK);
+		}
+		return new ResponseEntity("fail",HttpStatus.OK);
+	}
+	
+	
+	
 	
 }

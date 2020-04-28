@@ -13,7 +13,9 @@ public interface LottoService {
 	
 	public Integer getLastDrwNo();
 	
-	public void insertTag(TagInsertInfo tagInsertInfo);
+	public String insertTag(String name);
+	
+	public int insertTagList(TagInsertInfo tagInsertInfo);
 	
 	public List<LottoStat> getLottoStatList(List<String>tagList);
 }

@@ -1,10 +1,11 @@
 package kr.kjs.admin.dto;
 
+import kr.kjs.admin.vo.ProjectVO;
 import lombok.Getter;
 
 @Getter
 public class ProjectHistoryInsertDTO {
-	private String project_id="lotto";
+	private String project_id=ProjectVO.PROJECT_ID;
 	private String status="done";
 	private String content;
 	

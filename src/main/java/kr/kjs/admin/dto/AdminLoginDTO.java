@@ -1,10 +1,11 @@
 package kr.kjs.admin.dto;
 
-import lombok.Getter;
+import kr.kjs.admin.vo.ProjectVO;
+import lombok.Data;
 
-@Getter
+@Data
 public class AdminLoginDTO {
-	private String projectId="lotto";
+	private String project_id=ProjectVO.PROJECT_ID;
 	private String id;
 	private String password;
 	

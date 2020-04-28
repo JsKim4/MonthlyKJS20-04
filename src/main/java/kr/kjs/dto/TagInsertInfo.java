@@ -8,6 +8,6 @@ import lombok.ToString;
 
 @Getter @Setter @ToString
 public class TagInsertInfo {
-	private String tagName;
+	private String tagSeq;
 	private List<String> drwList;
 }

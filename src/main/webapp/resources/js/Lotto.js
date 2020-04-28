@@ -36,6 +36,7 @@ var lottoService =(function(){
 			}
 		});
 	}
+	
 	return {getLottoNumber:getLottoNumber,
 		getLottoStatList:getLottoStatList};
 })();
