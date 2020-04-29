@@ -30,6 +30,7 @@ import kr.kjs.admin.vo.ProjectVO;
 import kr.kjs.dto.LottoDTO;
 import kr.kjs.dto.LottoStat;
 import kr.kjs.dto.TagInsertInfo;
+import kr.kjs.dto.TagSimpleInfo;
 import kr.kjs.service.LottoService;
 import lombok.extern.java.Log;
 
@@ -108,9 +109,22 @@ public class HomeController {
 	
 	
 	@ResponseBody
+	@RequestMapping(value = "/tag/list", method = RequestMethod.GET)
+	public ResponseEntity<List<TagSimpleInfo>> getLottoTagList() {
+		List<TagSimpleInfo> responseDTO = service.getTagList();
+		if (responseDTO != null)
+			return new ResponseEntity<List<TagSimpleInfo>>(responseDTO, HttpStatus.OK);
+		else
+			return new ResponseEntity(HttpStatus.FOUND);
+	}
+	
+	
+	@ResponseBody
 	@RequestMapping(value = "/admin/tag/insert", method = RequestMethod.POST)
-	public ResponseEntity<String> insertTag(String name) {
-		return new ResponseEntity<String>(service.insertTag(name),HttpStatus.OK);
+	public ResponseEntity<String> insertTag(@RequestBody String name) {
+		log.info(name);
+		service.insertTag(name);
+		return new ResponseEntity<String>("success",HttpStatus.OK);
 	}
 	
 	@ResponseBody

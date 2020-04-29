@@ -11,15 +11,17 @@
 			<%@ include file="/WEB-INF/views/header.jsp" %>
 		</header>
 		<article>
-			<div class="form-group">
-			 	<label for="exampleDropdownFormEmail2">Email address</label>
-			 	<input type="email" id="id" class="form-control" placeholder="email@example.com">
-			</div>
-			<div class="form-group">
-			  <label for="exampleDropdownFormPassword2">Password</label>
-			  <input type="password" id="pw" class="form-control" placeholder="Password">
-			</div>
-			<button type="submit" id="loginBtn" class="btn btn-primary">Sign in</button>
+			<form>
+				<div class="form-group">
+				 	<label for="exampleDropdownFormEmail2">Email address</label>
+				 	<input type="email" id="id" class="form-control" placeholder="email@example.com">
+				</div>
+				<div class="form-group">
+				  <label for="exampleDropdownFormPassword2">Password</label>
+				  <input type="password" id="pw" class="form-control" placeholder="Password">
+				</div>
+				<button type="submit" id="loginBtn" class="btn btn-primary">Sign in</button>
+			</form>
 		</article>
 	</div>
 </body>

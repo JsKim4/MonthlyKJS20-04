@@ -20,9 +20,13 @@ public interface LottoMapper {
 	
 	public List<LottoStat> getLottoStatList(@Param("tagList")List<String> tagList);
 	
-	public String insertTag(String tagName);
+	public void insertTag(String tagName);
+	
+	public List<TagSimpleInfo> getTagList();
 	
 	public void insertLottoTag(@Param("tagSesq")String tagSeq,@Param("drwNo") String drwNo);
+	
+	public List<String> getLottoTagList(String tagSeq);
 	
 	public int modifyTagName(TagSimpleInfo tagSimpleInfo);
 	

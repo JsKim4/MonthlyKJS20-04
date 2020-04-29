@@ -10,6 +10,7 @@ import kr.kjs.admin.mapper.AdminMapper;
 import kr.kjs.dto.LottoDTO;
 import kr.kjs.dto.LottoStat;
 import kr.kjs.dto.TagInsertInfo;
+import kr.kjs.dto.TagSimpleInfo;
 import kr.kjs.mapper.LottoMapper;
 import kr.kjs.service.LottoService;
 import lombok.extern.java.Log;
@@ -53,9 +54,9 @@ public class LottoServiceImpl implements LottoService {
 	}
 
 	@Override
-	public String insertTag(String name) {
-		String seq = mapper.insertTag(name);
-		return seq;
+	public Boolean insertTag(String name) {
+		mapper.insertTag(name);
+		return true;
 	}
 
 	@Override
@@ -77,6 +78,43 @@ public class LottoServiceImpl implements LottoService {
 		}
 		if(fail!=0) 
 			adminMapper.insertHistory(new ProjectHistoryInsertDTO("warn","tagInsert 실패 보고 "+fail+"/"+tagInsertInfo.getDrwList().size()));
+		return fail;
+	}
+
+	@Override
+	public List<TagSimpleInfo> getTagList() {
+		return mapper.getTagList();
+	}
+
+	@Override
+	public List<String> getLottoTagList(String tagSeq) {
+		return mapper.getLottoTagList(tagSeq);
+	}
+
+	@Override
+	public Boolean modifyTagName(TagSimpleInfo tagSimpleInfo) {
+		return mapper.modifyTagName(tagSimpleInfo)==1;
+	}
+
+	@Override
+	public Boolean deleteTag(String tagSeq) {
+		return mapper.deleteTag(tagSeq)==1;
+	}
+
+	@Override
+	public Integer deleteLottoTag(TagInsertInfo tagInsertInfo) {
+		int fail = 0;
+		String tagSeq = tagInsertInfo.getTagSeq();
+		for(String drwNo:tagInsertInfo.getDrwList()) {
+			try {
+				mapper.deleteLottoTag(tagSeq, drwNo);
+			}catch(Exception e) {
+				fail++;
+				continue;
+			}
+		}
+		if(fail!=0) 
+			adminMapper.insertHistory(new ProjectHistoryInsertDTO("warn","tagDelete 실패 보고 "+fail+"/"+tagInsertInfo.getDrwList().size()));
 		return fail;
 	}
 	

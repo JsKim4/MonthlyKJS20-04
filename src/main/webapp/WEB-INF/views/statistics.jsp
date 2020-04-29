@@ -4,11 +4,11 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <head>
 	<style>
-		.drwtList{
-			width:45%;
-			height:80%;
+		.lottoFrame{
+			width:50%;
 			float:left;
-			margin-right:4%;
+			min-height:80%;
+			padding:1%;
 		}
 		ul{
 			list-style:none;
@@ -42,12 +42,12 @@
 			<%@ include file="/WEB-INF/views/header.jsp" %>
 		</header>
 		<article>
-			<div class="drwtList">
+			<div class="lottoFrame">
 			<ul id="drwtNo">
 				
 			</ul>
 			</div>
-			<div class="drwtList">
+			<div class="lottoFrame">
 				<div class="row align-items-end">
 					<h2 class="font-weight-bold">Tag List</h2>
 				</div>
@@ -63,79 +63,7 @@
 				<div class="row  text-info" style="font-size: 4px;">
 					<c:out value="Or 조건 연산이 완료된 후 And 조건을 연산합니다."/>
 				</div>
-				<ul>
-					<li class="tag">
-						<button type="button" class="btn btn-primary btn-sm">전체</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">봄</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">여름</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">가을</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">겨울</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">당첨금 10억 이상</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">당첨금 5억 이상</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">당첨금 1억 이상</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">당첨자 1명</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">당첨자 2~4명</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">당첨자 5~10명</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">당첨자 10명 이상</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">2020년</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">2019년</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">2018년</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">2017년</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">2016년</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">2015년</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">2014년</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">2013년</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">2012년</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">2011년</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">2010년</button>
-					</li>
-					<li class="tag">
-						<button type="button" class="btn btn-secondary btn-sm">2009년</button>
-					</li>
+				<ul id="tagList">
 				</ul>
 			</div>
 		</article>
@@ -146,6 +74,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/Lotto.js?ver=2" />"></script>
 <script type="text/javascript">
+
+
 	lottoService.getLottoStatList(function(result){
 		var str="";
 		var max = 0;
@@ -167,5 +97,26 @@
 		}
 		$("#drwtNo").html(str);
 	});
+	
+	setTagList();
+	
+	function setTagList(){
+		lottoService.getTagList(function(result){
+			var str = ""; 
+			for(var i=0;i<result.length;i++){
+				console.log(result[i]);
+				str+=getAddHtmlText(result[i]);
+			}
+			$("#tagList").html(str);	
+		});	
+	}
+	
+	function getAddHtmlText(tag){
+		var str = "";
+		str+='<li class="tag">';
+		str+='	<button type="button" class="btn btn-secondary btn-sm" value="'+tag.tagSeq+'">'+tag.tagName+'</button>';
+		str+='</li>';	
+		return str;
+	}
 </script>
 </html>

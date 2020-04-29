@@ -5,8 +5,34 @@
 <mapper namespace="kr.kjs.mapper.LottoMapper">
 	<insert id="insertLotto">
 		insert into 
-		tb_lotto(drw_no, drw_no_date,tot_sellamnt, first_winamnt, first_przwner_co, first_accumamnt, drwt_no1, drwt_no2, drwt_no3, drwt_no4, drwt_no5, drwt_no6, bnus_no) 
-		values(#{drwNo}, #{drwNoDate}, #{totSellamnt}, #{firstWinamnt}, #{firstPrzwnerCo}, #{firstAccumamnt}, #{drwtNo1}, #{drwtNo2}, #{drwtNo3}, #{drwtNo4}, #{drwtNo5}, #{drwtNo6}, #{bnusNo});
+			tb_lotto(
+				drw_no, 
+				drw_no_date,
+				tot_sellamnt, 
+				first_winamnt,
+				first_przwner_co, 
+				first_accumamnt, 
+				drwt_no1, 
+				drwt_no2, 
+				drwt_no3, 
+				drwt_no4, 
+				drwt_no5, 
+				drwt_no6, 
+				bnus_no) 
+			values(
+				#{drwNo}, 
+				#{drwNoDate}, 
+				#{totSellamnt}, 
+				#{firstWinamnt}, 
+				#{firstPrzwnerCo}, 
+				#{firstAccumamnt}, 
+				#{drwtNo1}, 
+				#{drwtNo2}, 
+				#{drwtNo3}, 
+				#{drwtNo4}, 
+				#{drwtNo5}, 
+				#{drwtNo6}, 
+				#{bnusNo});
 	</insert>
 	
 	<select id="getLottoByDrwNo" resultType="kr.kjs.dto.LottoDTO">
@@ -48,7 +74,10 @@
 		from 
 			tb_lotto
 		where
-			drw_no_date = DATE_ADD(#{searchDate},INTERVAL -mod(DAYOFWEEK(#{searchDate}),7) day)
+			drw_no_date = DATE_ADD(
+							#{searchDate},
+							INTERVAL -mod(DAYOFWEEK(#{searchDate}),
+							7) day)
 	</select>
 	
 	<select id="getLastDrwNo" resultType="int">
@@ -68,14 +97,59 @@
 	</select>
 	
 	<insert id="insertTag">
-		<selectKey keyProperty="id" resultType="String" order="AFTER">
-	    	select max(tag_seq) FROM tb_tag
-	  	</selectKey>
 	  	insert into tb_tag(tag_name) values(#{tagName})
 	</insert>
 	
+	<select id="getTagList" resultType="kr.kjs.dto.TagSimpleInfo">
+		select
+			tag_seq tagSeq,
+			tag_name tagName
+		from 
+			tb_tag
+	</select>
+	
+	
 	<insert id="insertLottoTag">
-		insert into tb_tag_list(tag_seq,drw_no) values(#{tagSesq},#{drwNo})
+		insert into 
+			tb_tag_list(
+				tag_seq,
+				drw_no) 
+			values(
+				#{tagSesq},
+				#{drwNo})
 	</insert>
 	
+	<select id="getLottoTagList" resultType="String">
+		select 
+			drw_no
+		from
+			tb_lotto_tag
+		where 
+			tag_seq = #{tagSeq}
+	</select>
+	
+	<update id="modifyTagName">
+		update 
+			tb_tag 
+		set 
+			tag_name = #{tagName} 
+		where 
+			tag_seq = #{tagSeq}
+	</update>
+	
+	<delete id="deleteTag">
+		delete
+		from
+			tb_tag
+		where 
+			tag_seq = #{tagSeq}
+	</delete>
+	
+	<delete id="deleteLottoTag">
+		delete
+		from
+			tb_lotto_tag
+		where 
+			(tag_seq,drw_no)= (#{tagSeq},#{drwNo})
+	</delete>
 </mapper>
