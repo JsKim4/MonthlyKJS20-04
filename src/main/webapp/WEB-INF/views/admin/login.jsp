@@ -11,17 +11,15 @@
 			<%@ include file="/WEB-INF/views/header.jsp" %>
 		</header>
 		<article>
-			<div>
-				<label for="id">ID  : </label>
-				<input id="id" type="text">	
+			<div class="form-group">
+			 	<label for="exampleDropdownFormEmail2">Email address</label>
+			 	<input type="email" id="id" class="form-control" placeholder="email@example.com">
 			</div>
-			<div>
-				<label for="pw">PW : </label>
-				<input id="pw" type="password">		
+			<div class="form-group">
+			  <label for="exampleDropdownFormPassword2">Password</label>
+			  <input type="password" id="pw" class="form-control" placeholder="Password">
 			</div>
-			<div>
-				<button type="button" class="btn btn-primary btn-lg" id="loginBtn">Login</button>
-			</div>
+			<button type="submit" id="loginBtn" class="btn btn-primary">Sign in</button>
 		</article>
 	</div>
 </body>
@@ -36,12 +34,11 @@ $(document).ready(function(){
 		console.log(loginInfo);
 		adminService.adminLogin(loginInfo,function(result){
 			if(result==='success'){
-				location.href="/Lotto/admin/tag";
-			}
+				location.reload();
+			}else
+				alert("로그인에 실패하였습니다.");
 		});
 	});
-	
-	
 });
 </script>
 </html>

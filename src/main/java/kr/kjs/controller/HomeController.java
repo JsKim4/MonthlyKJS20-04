@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,12 +63,10 @@ public class HomeController {
 	public void statistics() {}
 	
 	
-	@RequestMapping(value = "/admin/tag", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/", method = RequestMethod.GET)
 	public String tag(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		if(session.getAttribute(ProjectVO.PROJECT_ID+ProjectVO.ADMIN_LOGIN)!=null)
-			return "admin/tag";
-		return "redirect:/admin/login";
+		return "admin/index";
 	}
 	
 	@Scheduled(cron = "0 0 21 * * 7")
@@ -109,13 +108,13 @@ public class HomeController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "/tag/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/tag/insert", method = RequestMethod.POST)
 	public ResponseEntity<String> insertTag(String name) {
 		return new ResponseEntity<String>(service.insertTag(name),HttpStatus.OK);
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/tag/insert/list", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/tag/insert/list", method = RequestMethod.POST)
 	public ResponseEntity<String> insertTagList(@RequestBody TagInsertInfo tagInsertInfo) {
 		int fail = service.insertTagList(tagInsertInfo);
 		return new ResponseEntity<String>(fail==0?"success":"몇몇 실패케이스가 존재합니다. ",HttpStatus.OK);
@@ -132,13 +131,19 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<String> login(@RequestBody AdminLoginDTO loginDTO,HttpServletRequest request) {
-		log.info(String.valueOf(loginDTO));
 		if(adminService.login(loginDTO)) {
 			HttpSession session = request.getSession();
 			session.setAttribute(ProjectVO.PROJECT_ID+ProjectVO.ADMIN_LOGIN, "true");
-			return new ResponseEntity("success",HttpStatus.OK);
+			return new ResponseEntity<String>("success",HttpStatus.OK);
 		}
-		return new ResponseEntity("fail",HttpStatus.OK);
+		return new ResponseEntity<String>("fail",HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 	

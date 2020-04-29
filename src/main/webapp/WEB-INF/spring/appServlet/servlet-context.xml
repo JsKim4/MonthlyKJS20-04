@@ -27,4 +27,13 @@
 	<context:component-scan base-package="kr.kjs.controller" />
 	
 	
+	
+	<interceptors>
+       <interceptor>
+           <mapping path="/**/admin/**"/>
+           <beans:bean id="commonInterceptor" class="kr.kjs.admin.conf.AdminInterceptor"/>
+       </interceptor>
+    </interceptors>
+
+	
 </beans:beans>

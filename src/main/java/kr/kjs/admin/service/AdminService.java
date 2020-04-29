@@ -15,6 +15,6 @@ public class AdminService {
 	AdminMapper mapper;
 
 	public Boolean login(AdminLoginDTO loginDTO) {
-		return mapper.login(loginDTO)==null?false:true;
+		return mapper.login(loginDTO)==1;
 	}
 }

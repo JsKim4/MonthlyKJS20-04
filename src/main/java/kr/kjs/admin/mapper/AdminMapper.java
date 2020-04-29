@@ -7,7 +7,7 @@ import kr.kjs.admin.dto.ProjectHistoryInsertDTO;
 
 @Mapper
 public interface AdminMapper {
-	public String login(AdminLoginDTO loginDTO);
+	public int login(AdminLoginDTO loginDTO);
 	
 	public void insertHistory(ProjectHistoryInsertDTO historyDTO);
 }

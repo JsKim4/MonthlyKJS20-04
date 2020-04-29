@@ -3,6 +3,11 @@
 <html>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <head>
+	<style>
+		.lottoFrame{
+			width:50%;
+		}
+	</style>
 	<title>LOTTO ADMIN</title>
 </head>
 <body> 
@@ -11,8 +16,15 @@
 			<%@ include file="/WEB-INF/views/header.jsp" %>
 		</header>
 		<article>
-			tag
+			<div class="lottoFrame">
+			
+			</div>
+			<div>
+			</div>
 		</article>
+		<footer>
+			<a href="<c:url  value="/logout"/>">logout</a>
+		</footer>
 	</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
