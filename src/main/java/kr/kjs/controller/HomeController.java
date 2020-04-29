@@ -119,8 +119,16 @@ public class HomeController {
 	}
 	
 	
+	
 	@ResponseBody
-	@RequestMapping(value = "/admin/tag/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/tag/{tagSeq}", method = RequestMethod.GET)
+	public ResponseEntity<List<String>> getTagLotto(@PathVariable("tagSeq") String tagSeq) {
+		return new ResponseEntity<List<String>>(service.getLottoTagList(tagSeq),HttpStatus.OK);
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/admin/tag", method = RequestMethod.POST)
 	public ResponseEntity<String> insertTag(@RequestBody String name) {
 		log.info(name);
 		service.insertTag(name);
@@ -128,10 +136,25 @@ public class HomeController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/admin/tag/insert/list", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/tag", method = RequestMethod.DELETE)
+	public ResponseEntity<String> deleteTag(@RequestBody String tagSeq) {
+		log.info(tagSeq);
+		return new ResponseEntity<String>(service.deleteTag(tagSeq)?"success":"fail",HttpStatus.OK);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/admin/tag", method = RequestMethod.PUT)
+	public ResponseEntity<String> putTag(@RequestBody TagSimpleInfo tagSimpleInfo) {
+		log.info(String.valueOf(tagSimpleInfo));
+		return new ResponseEntity<String>(service.modifyTagName(tagSimpleInfo)?"success":"fail",HttpStatus.OK);
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/admin/tag/list", method = RequestMethod.POST)
 	public ResponseEntity<String> insertTagList(@RequestBody TagInsertInfo tagInsertInfo) {
 		int fail = service.insertTagList(tagInsertInfo);
-		return new ResponseEntity<String>(fail==0?"success":"몇몇 실패케이스가 존재합니다. ",HttpStatus.OK);
+		return new ResponseEntity<String>(fail==0?"success":"fail"+fail,HttpStatus.OK);
 	}
 	
 	

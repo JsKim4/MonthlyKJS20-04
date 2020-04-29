@@ -44,27 +44,6 @@ var lottoService =(function(){
 		});
 	}
 	
-	
-	function insertTag(name,callback,error){
-		$.ajax({
-			type:'post',
-			url:getContextPath()+'/admin/tag/insert',
-			data:name,
-			contentType : "application/json; charset=utf-8", 
-			success : function(result,status,xhr){ 
-				if(callback){
-					callback(result);
-				}
-			},
-			error : function(xhr,status,er){
-				if(error){
-					error();
-				}
-			}
-		});
-	}
-	
-	
 	function getTagList(callback,error){
 		$.ajax({
 			type:'get',
@@ -82,8 +61,87 @@ var lottoService =(function(){
 		});
 	}
 	
+	
+	function insertTag(name,callback,error){
+		$.ajax({
+			type:'post',
+			url:getContextPath()+'/admin/tag',
+			data:name,
+			contentType : "application/json; charset=utf-8", 
+			success : function(result,status,xhr){ 
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function(xhr,status,er){
+				if(error){
+					error();
+				}
+			}
+		});
+	}
+	
+	function removeTag(seq,callback,error){
+		$.ajax({
+			type:'delete',
+			url:getContextPath()+'/admin/tag',
+			data:seq,
+			contentType : "application/json; charset=utf-8", 
+			success : function(result,status,xhr){ 
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function(xhr,status,er){
+				if(error){
+					error();
+				}
+			}
+		});
+	}
+	
+	function modifyTag(tag,callback,error){
+		$.ajax({
+			type:'put',
+			url:getContextPath()+'/admin/tag',
+			data:JSON.stringify(tag),
+			contentType : "application/json; charset=utf-8", 
+			success : function(result,status,xhr){ 
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function(xhr,status,er){
+				if(error){
+					error();
+				}
+			}
+		});
+	}
+	
+	function getTagLottoList(seq,callback,error){
+		$.ajax({
+			type:'get',
+			url:getContextPath()+'/admin/tag/'+seq,
+			contentType : "application/json; charset=utf-8", 
+			success : function(result,status,xhr){ 
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function(xhr,status,er){
+				if(error){
+					error();
+				}
+			}
+		});
+	}
+	
 	return {getLottoNumber:getLottoNumber,
 		getLottoStatList:getLottoStatList,
+		getTagList:getTagList,
 		insertTag:insertTag,
-		getTagList:getTagList};
+		removeTag:removeTag,
+		modifyTag:modifyTag,
+		getTagLottoList:getTagLottoList};
 })();
