@@ -16,6 +16,8 @@ public interface LottoMapper {
 	
 	public LottoDTO getLottoByDate(@Param("searchDate")String date);
 	
+	public List<LottoDTO> getLottoList();
+	
 	public Integer getLastDrwNo();
 	
 	public List<LottoStat> getLottoStatList(@Param("tagList")List<String> tagList);

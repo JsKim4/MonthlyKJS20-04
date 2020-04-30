@@ -12,6 +12,8 @@ public interface LottoService {
 	
 	public LottoDTO getLotto(String data,String type);
 	
+	public List<LottoDTO> getLottoList();
+	
 	public Integer getLastDrwNo();
 	
 	public List<LottoStat> getLottoStatList(List<String>tagList);

@@ -119,6 +119,17 @@ public class HomeController {
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value = "/lotto/list", method = RequestMethod.GET)
+	public ResponseEntity<List<LottoDTO>> getLottoList() {
+		List<LottoDTO> responseDTO = service.getLottoList();
+		if (responseDTO != null)
+			return new ResponseEntity<List<LottoDTO>>(responseDTO, HttpStatus.OK);
+		else
+			return new ResponseEntity(HttpStatus.FOUND);
+	}
+	
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/admin/tag/{tagSeq}", method = RequestMethod.GET)

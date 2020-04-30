@@ -80,6 +80,26 @@
 							7) day)
 	</select>
 	
+	<select id="getLottoList" resultType="kr.kjs.dto.LottoDTO">
+		select 
+				drw_no drwNo, 
+				drw_no_date drwNoDate, 
+				first_winamnt firstWinamnt, 
+				first_przwner_co firstPrzwnerCo, 
+				first_accumamnt firstAccumamnt, 
+				tot_sellamnt totSellamnt, 
+				drwt_no1 drwtNo1, 
+				drwt_no2 drwtNo2, 
+				drwt_no3 drwtNo3, 
+				drwt_no4 drwtNo4, 
+				drwt_no5 drwtNo5, 
+				drwt_no6 drwtNo6, 
+				bnus_no bnusNo
+			from 
+				tb_lotto
+	</select>
+	
+	
 	<select id="getLastDrwNo" resultType="int">
 		select max(drw_no) drwNo from tb_lotto; 
 	</select>
@@ -111,7 +131,7 @@
 	
 	<insert id="insertLottoTag">
 		insert into 
-			tb_tag_list(
+			tb_lotto_tag(
 				tag_seq,
 				drw_no) 
 			values(

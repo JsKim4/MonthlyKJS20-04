@@ -14,7 +14,7 @@
 			<form>
 				<div class="form-group">
 				 	<label for="exampleDropdownFormEmail2">Email address</label>
-				 	<input type="email" id="id" class="form-control" placeholder="email@example.com">
+				 	<input type="text" id="id" class="form-control" placeholder="email@example.com">
 				</div>
 				<div class="form-group">
 				  <label for="exampleDropdownFormPassword2">Password</label>

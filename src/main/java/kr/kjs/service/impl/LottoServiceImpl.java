@@ -47,6 +47,13 @@ public class LottoServiceImpl implements LottoService {
 			return mapper.getLottoByDate(data);
 		return null;
 	}
+	
+	
+
+	@Override
+	public List<LottoDTO> getLottoList() {
+		return mapper.getLottoList();
+	}
 
 	@Override
 	public Integer getLastDrwNo() {
@@ -77,7 +84,7 @@ public class LottoServiceImpl implements LottoService {
 			}
 		}
 		if(fail!=0) 
-			adminMapper.insertHistory(new ProjectHistoryInsertDTO("warn","tagInsert 실패 보고 "+fail+"/"+tagInsertInfo.getDrwList().size()));
+			adminMapper.insertHistory(new ProjectHistoryInsertDTO("warning","tagInsert 실패 보고 "+fail+"/"+tagInsertInfo.getDrwList().size()));
 		return fail;
 	}
 

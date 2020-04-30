@@ -44,6 +44,19 @@ var lottoService =(function(){
 		});
 	}
 	
+	function getLottoList(callback){
+		$.ajax({
+			type:'get',
+			url:getContextPath()+'/lotto/list',
+			success : function(result,status,xhr){ 
+				if(callback){
+					callback(result);
+				}
+			}
+		});
+		
+	}
+	
 	function getTagList(callback,error){
 		$.ajax({
 			type:'get',
@@ -137,11 +150,33 @@ var lottoService =(function(){
 		});
 	}
 	
+	function insertTagLottoList(taginsertList,callback,error){
+		console.log(taginsertList);
+		$.ajax({
+			type:'post',
+			url:getContextPath()+'/admin/tag/list',
+			data:JSON.stringify(taginsertList),
+			contentType : "application/json; charset=utf-8", 
+			success : function(result,status,xhr){ 
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function(xhr,status,er){
+				if(error){
+					error();
+				}
+			}
+		});
+	}
+	
 	return {getLottoNumber:getLottoNumber,
 		getLottoStatList:getLottoStatList,
+		getLottoList:getLottoList,
 		getTagList:getTagList,
 		insertTag:insertTag,
 		removeTag:removeTag,
 		modifyTag:modifyTag,
-		getTagLottoList:getTagLottoList};
+		getTagLottoList:getTagLottoList,
+		insertTagLottoList:insertTagLottoList};
 })();
