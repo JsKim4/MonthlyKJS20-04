@@ -175,7 +175,9 @@ $(document).ready(function(){
 			drwList.push($(this).val());
 		});
 		lottoService.insertTagLottoList({"tagSeq":tagSeq,"drwList":drwList},function(result){
-			console.log(result);
+			if(result==='success'){
+				alert("태그등록에 성공하였습니다.");
+			}
 		});
 
 	});
@@ -193,7 +195,6 @@ $(document).ready(function(){
 	function initVisible(){
 		for(var i=0;i<isVisibleLotto.length;i++)
 			isVisibleLotto[i]=false;
-		setVisible();
 	}
 	
 	$("#searchBtn").on("click",function(){	
@@ -319,10 +320,16 @@ $(document).ready(function(){
 				document.getElementById("selectedTagSeq").value=tagSeq;
 				document.getElementById("modifyTagName").value=tagName;
 				$("#selectedTagName").html(tagName);
-				initVisible();
 				lottoService.getTagLottoList(tagSeq,function(result){
-					console.log(result);
+					initVisible();
+					$("div[id^='lotto-check-form']").children('input[id^="lottoCheck"]').prop('checked',false); 
+					for(var i=0;i<result.length;i++){
+						isVisibleLotto[result[i]]=true;
+					}
+					setVisible();
+					$("div[id^='lotto-check-form']").not($("*[style*='none']")).children('input[id^="lottoCheck"]').prop('checked',true); 
 				});
+				
 			});
 		});	
 	}

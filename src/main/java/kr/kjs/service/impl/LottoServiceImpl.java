@@ -75,6 +75,7 @@ public class LottoServiceImpl implements LottoService {
 	public int insertTagList(TagInsertInfo tagInsertInfo) {
 		int fail = 0;
 		String tagSeq = tagInsertInfo.getTagSeq();
+		mapper.deleteLottoTag(tagSeq);
 		for(String drwNo:tagInsertInfo.getDrwList()) {
 			try {
 				mapper.insertLottoTag(tagSeq, drwNo);
@@ -107,25 +108,6 @@ public class LottoServiceImpl implements LottoService {
 	public Boolean deleteTag(String tagSeq) {
 		return mapper.deleteTag(tagSeq)==1;
 	}
-
-	@Override
-	public Integer deleteLottoTag(TagInsertInfo tagInsertInfo) {
-		int fail = 0;
-		String tagSeq = tagInsertInfo.getTagSeq();
-		for(String drwNo:tagInsertInfo.getDrwList()) {
-			try {
-				mapper.deleteLottoTag(tagSeq, drwNo);
-			}catch(Exception e) {
-				fail++;
-				continue;
-			}
-		}
-		if(fail!=0) 
-			adminMapper.insertHistory(new ProjectHistoryInsertDTO("warn","tagDelete 실패 보고 "+fail+"/"+tagInsertInfo.getDrwList().size()));
-		return fail;
-	}
-	
-	
 	
 
 	

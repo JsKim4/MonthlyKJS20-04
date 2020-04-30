@@ -170,6 +170,6 @@
 		from
 			tb_lotto_tag
 		where 
-			(tag_seq,drw_no)= (#{tagSeq},#{drwNo})
+			tag_seq= #{tagSeq}
 	</delete>
 </mapper>

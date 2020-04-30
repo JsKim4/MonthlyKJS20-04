@@ -34,6 +34,6 @@ public interface LottoMapper {
 	
 	public int deleteTag(String tagSeq);
 	
-	public int deleteLottoTag(@Param("tagSesq")String tagSeq,@Param("drwNo") String drwNo);
+	public int deleteLottoTag(@Param("tagSeq")String tagSeq);
 	
 }

@@ -30,5 +30,4 @@ public interface LottoService {
 	
 	public Boolean deleteTag(String tagSeq);
 	
-	public Integer deleteLottoTag(TagInsertInfo tagInsertInfo);
 }
