@@ -117,7 +117,7 @@
 		</choose>
 			<choose>
 			<when test="orCondition.size()!=0">
-			drwt_no in(
+			drw_no in(
 			select distinct drw_no from tb_lotto_tag
 			where 
 				tag_seq in
@@ -135,7 +135,7 @@
 			
 			<choose>
 			<when test="andCondition.size()!=0">
-			drwt_no not in(
+			drw_no not in(
 				select distinct drw_no from tb_lotto_tag
 				where tag_seq in 
 				<foreach collection="andCondition" item="item" index="index" separator="," open="(" close=")">
