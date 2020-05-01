@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.kjs.dto.LottoDTO;
+import kr.kjs.dto.LottoSearchDTO;
 import kr.kjs.dto.LottoStat;
 import kr.kjs.dto.TagSimpleInfo;
 @Mapper
@@ -20,7 +21,7 @@ public interface LottoMapper {
 	
 	public Integer getLastDrwNo();
 	
-	public List<LottoStat> getLottoStatList(@Param("tagList")List<String> tagList);
+	public List<LottoStat> getLottoStatList(LottoSearchDTO searchDTO);
 	
 	public void insertTag(String tagName);
 	

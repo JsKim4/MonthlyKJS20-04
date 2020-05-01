@@ -3,6 +3,7 @@ package kr.kjs.service;
 import java.util.List;
 
 import kr.kjs.dto.LottoDTO;
+import kr.kjs.dto.LottoSearchDTO;
 import kr.kjs.dto.LottoStat;
 import kr.kjs.dto.TagInsertInfo;
 import kr.kjs.dto.TagSimpleInfo;
@@ -16,7 +17,7 @@ public interface LottoService {
 	
 	public Integer getLastDrwNo();
 	
-	public List<LottoStat> getLottoStatList(List<String>tagList);
+	public List<LottoStat> getLottoStatList(LottoSearchDTO searchDTO);
 	
 	public Boolean insertTag(String name);
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.kjs.admin.dto.ProjectHistoryInsertDTO;
 import kr.kjs.admin.mapper.AdminMapper;
 import kr.kjs.dto.LottoDTO;
+import kr.kjs.dto.LottoSearchDTO;
 import kr.kjs.dto.LottoStat;
 import kr.kjs.dto.TagInsertInfo;
 import kr.kjs.dto.TagSimpleInfo;
@@ -67,8 +68,8 @@ public class LottoServiceImpl implements LottoService {
 	}
 
 	@Override
-	public List<LottoStat> getLottoStatList(List<String>tagList) {
-		return mapper.getLottoStatList(tagList);
+	public List<LottoStat> getLottoStatList(LottoSearchDTO searchDTO) {
+		return mapper.getLottoStatList(searchDTO);
 	}
 
 	@Override
