@@ -17,7 +17,7 @@
 		}
 		li{
 			width:14%;
-			height:14%;
+			height:10%;
 			padding:3%;
 			font-size:100%;
 			margin:0;
