@@ -110,6 +110,40 @@
 			count(*) count
 		from 
 			tb_lotto_stat
+		<choose>
+			<when test="orCondition.size()!=0 || orCondition.size()!=0">
+				where
+			</when>
+		</choose>
+			<choose>
+			<when test="orCondition.size()!=0">
+			drwt_no in(
+			select distinct drw_no from tb_lotto_tag
+			where 
+				tag_seq in
+			 
+			<foreach collection="orCondition" item="item" index="index" separator="," open="(" close=")">
+				#{item}
+		    </foreach>)
+				<choose>
+					<when test="andCondition.size()!=0">
+						and 
+					</when>
+				</choose>
+			</when>
+			</choose>
+			
+			<choose>
+			<when test="andCondition.size()!=0">
+			drwt_no not in(
+				select distinct drw_no from tb_lotto_tag
+				where tag_seq in 
+				<foreach collection="andCondition" item="item" index="index" separator="," open="(" close=")">
+					#{item}
+			    </foreach>)
+			 </when>
+			</choose>
+			
 		group by
 			drwt_no 
 		order by 

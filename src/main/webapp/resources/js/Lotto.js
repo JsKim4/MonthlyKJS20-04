@@ -27,10 +27,13 @@ var lottoService =(function(){
 		});
 	}
 	
-	function getLottoStatList(callback,error){
+	function getLottoStatList(andSelectList,orSelectList,callback,error){
+		console.log(orSelectList);
+		console.log(andSelectList);
 		$.ajax({
 			type:'get',
-			url:getContextPath()+'/statistics/list',
+			url:getContextPath()+'/statistics/list?orCondition='+orSelectList+'&andCondition='+andSelectList,
+			contentType : "application/json; charset=utf-8", 
 			success : function(result,status,xhr){ 
 				if(callback){
 					callback(result);

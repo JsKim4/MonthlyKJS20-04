@@ -37,7 +37,7 @@
 	</logger>
 
 	<logger name="jdbc.sqltiming">
-		<level value="warn" />
+		<level value="info" />
 	</logger>
 
 	<!-- Root Logger -->

@@ -28,6 +28,7 @@ import kr.kjs.admin.dto.AdminLoginDTO;
 import kr.kjs.admin.service.AdminService;
 import kr.kjs.admin.vo.ProjectVO;
 import kr.kjs.dto.LottoDTO;
+import kr.kjs.dto.LottoSearchDTO;
 import kr.kjs.dto.LottoStat;
 import kr.kjs.dto.TagInsertInfo;
 import kr.kjs.dto.TagSimpleInfo;
@@ -98,9 +99,8 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/statistics/list", method = RequestMethod.GET)
-	public ResponseEntity<List<LottoStat>> getLottoStatList() {
-		List<LottoStat> responseDTO = service.getLottoStatList(null);
-		log.info(String.valueOf(responseDTO));
+	public ResponseEntity<List<LottoStat>> getLottoStatList(LottoSearchDTO searchDTO) {
+		List<LottoStat> responseDTO = service.getLottoStatList(searchDTO);
 		if (responseDTO != null)
 			return new ResponseEntity<List<LottoStat>>(responseDTO, HttpStatus.OK);
 		else

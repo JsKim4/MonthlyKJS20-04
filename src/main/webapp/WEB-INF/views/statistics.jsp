@@ -72,36 +72,12 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
-<script type="text/javascript" src="<c:url value="/resources/js/Lotto.js?ver=2" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/Lotto.js?ver=3" />"></script>
 <script type="text/javascript">
 
-
-	lottoService.getLottoStatList(function(result){
-		var str="";
-		var max = 0;
-		var min = 10000;
-		var j = 0;
-		for(var i=0;i<result.length;i++){
-			if(parseInt(result[i].count) > max)
-				max = parseInt(result[i].count);
-			if(parseInt(result[i].count)< min)
-				min = parseInt(result[i].count);
-		}
-		if(result.length<45)
-			min = 0;
-		min/=1.2;
-		max-=min;
-		for(var i=1;i<=45;i++){
-			var num = ((j<result.length)&&(parseInt(result[j].drwtNo)===i)?result[j++].count:0);
-			str+="<li style='background:rgba(31,154,223,"+(num-min)/max+")' value='"+num+"'>"+i+"</li>";
-		}
-		$("#drwtNo").html(str);
-		
-		
-	});
 	
 	setTagList();
-	
+	setLottoStatList('','');
 	function setTagList(){
 		lottoService.getTagList(function(result){
 			var str = ""; 
@@ -124,8 +100,43 @@
 					$(this).addClass("btn-primary");
 					$(this).removeClass("btn-secondary");
 				}
+				var andSelectList = new Array;
+				var orSelectList = new Array;
+				$(".tagBtn.andSelect").each(function(){
+					andSelectList.push($(this).val());
+				});
+				$(".tagBtn.orSelect").each(function(){
+					orSelectList.push($(this).val());
+				});
+				setLottoStatList(andSelectList,orSelectList);
 			});
 		});	
+	}
+	
+	function setLottoStatList(andSelectList,orSelectList){
+		lottoService.getLottoStatList(andSelectList,orSelectList,function(result){
+			console.log(result);
+			var str="";
+			var max = 0;
+			var min = 10000;
+			var j = 0;
+			for(var i=0;i<result.length;i++){
+				if(parseInt(result[i].count) > max)
+					max = parseInt(result[i].count);
+				if(parseInt(result[i].count)< min)
+					min = parseInt(result[i].count);
+			}
+			if(result.length<45)
+				min = 0;
+			min/=1.2;
+			max-=min;
+			for(var i=1;i<=45;i++){
+				var num = ((j<result.length)&&(parseInt(result[j].drwtNo)===i)?result[j++].count:0);
+				str+="<li style='background:rgba(31,154,223,"+(num-min)/max+")' value='"+num+"'>"+i+"</li>";
+			}
+			$("#drwtNo").html(str);
+		});	
+		
 	}
 	
 	function getAddHtmlText(tag){
