@@ -26,8 +26,6 @@
 	
 	<context:component-scan base-package="kr.kjs.controller" />
 	
-	
-	
 	<interceptors>
        <interceptor>
            <mapping path="/**/admin/**"/>
@@ -35,5 +33,4 @@
        </interceptor>
     </interceptors>
 
-	
 </beans:beans>

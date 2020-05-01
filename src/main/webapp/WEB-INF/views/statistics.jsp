@@ -96,6 +96,8 @@
 			str+="<li style='background:rgba(31,154,223,"+(num-min)/max+")' value='"+num+"'>"+i+"</li>";
 		}
 		$("#drwtNo").html(str);
+		
+		
 	});
 	
 	setTagList();
@@ -104,17 +106,32 @@
 		lottoService.getTagList(function(result){
 			var str = ""; 
 			for(var i=0;i<result.length;i++){
-				console.log(result[i]);
 				str+=getAddHtmlText(result[i]);
 			}
 			$("#tagList").html(str);	
+			$(".tagBtn").click(function(){
+				if($(this).hasClass("orSelect")){
+					$(this).addClass("andSelect");
+					$(this).addClass("btn-danger");
+					$(this).removeClass("btn-primary");
+					$(this).removeClass("orSelect");
+				}else if($(this).hasClass("andSelect")){
+					$(this).addClass("btn-secondary");
+					$(this).removeClass("btn-danger");
+					$(this).removeClass("andSelect");
+				}else{
+					$(this).addClass("orSelect");
+					$(this).addClass("btn-primary");
+					$(this).removeClass("btn-secondary");
+				}
+			});
 		});	
 	}
 	
 	function getAddHtmlText(tag){
 		var str = "";
 		str+='<li class="tag">';
-		str+='	<button type="button" class="btn btn-secondary btn-sm" value="'+tag.tagSeq+'">'+tag.tagName+'</button>';
+		str+='	<button type="button" class="tagBtn btn btn-secondary btn-sm" value="'+tag.tagSeq+'">'+tag.tagName+'</button>';
 		str+='</li>';	
 		return str;
 	}

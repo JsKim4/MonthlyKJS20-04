@@ -64,6 +64,7 @@
 				<ul id="tagList">
 					
 				</ul>
+				<a href="<c:url  value="/logout"/>">logout</a>
 			</div>
 			<div class="lottoFrame mainFrame">
 				<div class="input-group mb-3">
@@ -148,9 +149,6 @@
 				</div>
 			</div>
 		</article>
-		<footer>
-			<a href="<c:url  value="/logout"/>">logout</a>
-		</footer>
 	</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
