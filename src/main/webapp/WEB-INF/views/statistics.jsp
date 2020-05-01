@@ -115,7 +115,6 @@
 	
 	function setLottoStatList(andSelectList,orSelectList){
 		lottoService.getLottoStatList(andSelectList,orSelectList,function(result){
-			console.log(result);
 			var str="";
 			var max = 0;
 			var min = 10000;
