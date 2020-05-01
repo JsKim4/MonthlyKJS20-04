@@ -111,7 +111,7 @@
 		from 
 			tb_lotto_stat
 		<choose>
-			<when test="orCondition.size()!=0 || orCondition.size()!=0">
+			<when test="orCondition.size()!=0 || andCondition.size()!=0">
 				where
 			</when>
 		</choose>
