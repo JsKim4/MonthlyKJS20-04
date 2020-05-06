@@ -125,22 +125,19 @@
 			<foreach collection="orCondition" item="item" index="index" separator="," open="(" close=")">
 				#{item}
 		    </foreach>)
-				<choose>
-					<when test="andCondition.size()!=0">
-						and 
-					</when>
-				</choose>
+		    	<choose>
+		    		<when test="andCondition.size()!=0">
+		    			and
+		    		</when>
+		    	</choose>
 			</when>
 			</choose>
 			
 			<choose>
 			<when test="andCondition.size()!=0">
-			drw_no not in(
-				select distinct drw_no from tb_lotto_tag
-				where tag_seq in 
-				<foreach collection="andCondition" item="item" index="index" separator="," open="(" close=")">
-					#{item}
-			    </foreach>)
+				<foreach collection="andCondition" item="item" index="index" separator="and" >
+					drw_no  in( select distinct drw_no from tb_lotto_tag where tag_seq = #{item} )
+			    </foreach>
 			 </when>
 			</choose>
 			
