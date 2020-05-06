@@ -11,6 +11,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import kr.kjs.admin.dto.AdminLoginDTO;
 import kr.kjs.admin.dto.ProjectHistoryInsertDTO;
 import kr.kjs.admin.service.AdminService;
+import kr.kjs.mapper.LottoMapper;
 import lombok.extern.java.Log;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,12 +27,13 @@ public class AdminMapperTest {
 	@Autowired
 	AdminService service;
 	
+	
 	@Ignore
 	@Test
 	public void test() {
 		ProjectHistoryInsertDTO historyDTO = new ProjectHistoryInsertDTO("done", "test내용");
 	}
-	
+	@Ignore
 	@Test
 	public void testLogin() {
 		AdminLoginDTO login = new AdminLoginDTO();
@@ -40,12 +42,20 @@ public class AdminMapperTest {
 		
 		log.info(String.valueOf(mapper.login(login)));
 	}
-	
+	@Ignore
 	@Test
 	public void testLoginService() {
 		AdminLoginDTO loginInfo = new AdminLoginDTO();
 		loginInfo.setId("lotto_admin");
 		loginInfo.setPassword("admin");
 		service.login(loginInfo);
+	}
+	
+	@Autowired
+	LottoMapper lmapper;
+	@Test
+	public void test001() {
+		String search[]={"0","0","0","0","0","0"};
+		log.info(String.valueOf(lmapper.getLottoSimulationList(search)));
 	}
 }

@@ -9,6 +9,7 @@ import kr.kjs.admin.dto.ProjectHistoryInsertDTO;
 import kr.kjs.admin.mapper.AdminMapper;
 import kr.kjs.dto.LottoDTO;
 import kr.kjs.dto.LottoSearchDTO;
+import kr.kjs.dto.LottoSimulationDTO;
 import kr.kjs.dto.LottoStat;
 import kr.kjs.dto.TagInsertInfo;
 import kr.kjs.dto.TagSimpleInfo;
@@ -108,6 +109,11 @@ public class LottoServiceImpl implements LottoService {
 	@Override
 	public Boolean deleteTag(String tagSeq) {
 		return mapper.deleteTag(tagSeq)==1;
+	}
+
+	@Override
+	public List<LottoSimulationDTO> getLottoSimulationList(String[] search) {
+		return mapper.getLottoSimulationList(search);
 	}
 	
 

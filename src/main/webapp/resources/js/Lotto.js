@@ -173,6 +173,23 @@ var lottoService =(function(){
 		});
 	}
 	
+	function getSimluationList(search,callback,error){
+		$.ajax({
+			type:'get',
+			url:getContextPath()+'/simulation/list?search='+search[0]+'&search='+search[1]+'&search='+search[2]+'&search='+search[3]+'&search='+search[4]+'&search='+search[5],
+			success : function(result,status,xhr){ 
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function(xhr,status,er){
+				if(error){
+					error();
+				}
+			}
+		});
+	}
+	
 	return {getLottoNumber:getLottoNumber,
 		getLottoStatList:getLottoStatList,
 		getLottoList:getLottoList,
@@ -181,5 +198,6 @@ var lottoService =(function(){
 		removeTag:removeTag,
 		modifyTag:modifyTag,
 		getTagLottoList:getTagLottoList,
-		insertTagLottoList:insertTagLottoList};
+		insertTagLottoList:insertTagLottoList,
+		getSimluationList:getSimluationList};
 })();

@@ -29,6 +29,7 @@ import kr.kjs.admin.service.AdminService;
 import kr.kjs.admin.vo.ProjectVO;
 import kr.kjs.dto.LottoDTO;
 import kr.kjs.dto.LottoSearchDTO;
+import kr.kjs.dto.LottoSimulationDTO;
 import kr.kjs.dto.LottoStat;
 import kr.kjs.dto.TagInsertInfo;
 import kr.kjs.dto.TagSimpleInfo;
@@ -64,10 +65,11 @@ public class HomeController {
 	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
 	public void statistics() {}
 	
+	@RequestMapping(value = "/simulation", method = RequestMethod.GET)
+	public void simulation() {}
 	
 	@RequestMapping(value = "/admin/", method = RequestMethod.GET)
-	public String tag(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String adminForm() {
 		return "admin/index";
 	}
 	
@@ -93,7 +95,7 @@ public class HomeController {
 		if (responseDTO != null)
 			return new ResponseEntity<LottoDTO>(responseDTO, HttpStatus.OK);
 		else
-			return new ResponseEntity(HttpStatus.FOUND);
+			return new ResponseEntity<>(HttpStatus.FOUND);
 	}
 
 	
@@ -104,7 +106,14 @@ public class HomeController {
 		if (responseDTO != null)
 			return new ResponseEntity<List<LottoStat>>(responseDTO, HttpStatus.OK);
 		else
-			return new ResponseEntity(HttpStatus.FOUND);
+			return new ResponseEntity<>(HttpStatus.FOUND);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/simulation/list", method = RequestMethod.GET)
+	public ResponseEntity<List<LottoSimulationDTO>> getLottoSimulation(String search[]) {
+		log.info(String.valueOf(service.getLottoSimulationList(search)));
+		return new ResponseEntity<List<LottoSimulationDTO>>(service.getLottoSimulationList(search),HttpStatus.OK);
 	}
 	
 	
@@ -115,7 +124,7 @@ public class HomeController {
 		if (responseDTO != null)
 			return new ResponseEntity<List<TagSimpleInfo>>(responseDTO, HttpStatus.OK);
 		else
-			return new ResponseEntity(HttpStatus.FOUND);
+			return new ResponseEntity<>(HttpStatus.FOUND);
 	}
 	
 	
@@ -126,7 +135,7 @@ public class HomeController {
 		if (responseDTO != null)
 			return new ResponseEntity<List<LottoDTO>>(responseDTO, HttpStatus.OK);
 		else
-			return new ResponseEntity(HttpStatus.FOUND);
+			return new ResponseEntity<>(HttpStatus.FOUND);
 	}
 	
 	
@@ -141,7 +150,6 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "/admin/tag", method = RequestMethod.POST)
 	public ResponseEntity<String> insertTag(@RequestBody String name) {
-		log.info(name);
 		service.insertTag(name);
 		return new ResponseEntity<String>("success",HttpStatus.OK);
 	}
@@ -149,14 +157,12 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "/admin/tag", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteTag(@RequestBody String tagSeq) {
-		log.info(tagSeq);
 		return new ResponseEntity<String>(service.deleteTag(tagSeq)?"success":"fail",HttpStatus.OK);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/admin/tag", method = RequestMethod.PUT)
 	public ResponseEntity<String> putTag(@RequestBody TagSimpleInfo tagSimpleInfo) {
-		log.info(String.valueOf(tagSimpleInfo));
 		return new ResponseEntity<String>(service.modifyTagName(tagSimpleInfo)?"success":"fail",HttpStatus.OK);
 	}
 	

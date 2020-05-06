@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.kjs.dto.LottoDTO;
 import kr.kjs.dto.LottoSearchDTO;
+import kr.kjs.dto.LottoSimulationDTO;
 import kr.kjs.dto.LottoStat;
 import kr.kjs.dto.TagInsertInfo;
 import kr.kjs.dto.TagSimpleInfo;
@@ -30,5 +31,7 @@ public interface LottoService {
 	public Boolean modifyTagName(TagSimpleInfo tagSimpleInfo);
 	
 	public Boolean deleteTag(String tagSeq);
+	
+	public List<LottoSimulationDTO> getLottoSimulationList(String[] search);
 	
 }

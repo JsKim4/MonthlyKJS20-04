@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.kjs.dto.LottoDTO;
 import kr.kjs.dto.LottoSearchDTO;
+import kr.kjs.dto.LottoSimulationDTO;
 import kr.kjs.dto.LottoStat;
 import kr.kjs.dto.TagSimpleInfo;
 @Mapper
@@ -36,5 +37,6 @@ public interface LottoMapper {
 	public int deleteTag(String tagSeq);
 	
 	public int deleteLottoTag(@Param("tagSeq")String tagSeq);
-	
+
+	public List<LottoSimulationDTO>getLottoSimulationList(@Param("search")String[] search);
 }

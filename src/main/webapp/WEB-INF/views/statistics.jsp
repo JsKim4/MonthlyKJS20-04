@@ -43,9 +43,9 @@
 		</header>
 		<article>
 			<div class="lottoFrame">
-			<ul id="drwtNo">
-				
-			</ul>
+				<ul id="drwtNo">
+					
+				</ul>
 			</div>
 			<div class="lottoFrame">
 				<div class="row align-items-end">
