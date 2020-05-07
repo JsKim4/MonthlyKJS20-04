@@ -93,14 +93,22 @@ $("li[name^=num]").click(function(){
 			var str="";
 			var i = 0;
 			console.log(result);
-			for(; i<result.length&&i<result[i].rank=="1등";i++)
+			for(; i<result.length&&i<result[i].rank==="1등";i++){
+				console.log(result[i].rank,"1등")
 				str += "<h1>축 1등 : "+result[i].drwNo+"</h1>";
-			for(; i<result.length&&i<result[i].rank=="2등";i++)
+			}
+			for(; i<result.length&&i<result[i].rank==="2등";i++){
+				console.log(result[i].rank,"2등")
 				str += "<h2>축 2등 : "+result[i].drwNo+"</h2>";
-			for(; i<result.length&&i<result[i].rank=="3등";i++)
+			}
+			for(; i<result.length&&i<result[i].rank==="3등";i++){
+				console.log(result[i].rank,"3등")
 				str += "<h3>축 3등 : "+result[i].drwNo+"</h3>";
-			for(; i<result.length&&i<result[i].rank=="4등";i++)
+			}
+			for(; i<result.length&&i<result[i].rank==="4등";i++){
+				console.log(result[i].rank,"4등")
 				str += "<h4>축 4등 : "+result[i].drwNo+"</h4>";
+			}
 			if(result.length==0){
 				str="<h2>당첨회차가 없습니다 ㅜㅡㅠ</h2>";
 			}
