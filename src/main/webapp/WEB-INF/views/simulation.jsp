@@ -94,20 +94,20 @@ $("li[name^=num]").click(function(){
 			var i = 0;
 			console.log(result);
 			for(var i = 0; i<result.length;i++){
-				console.log(result[i].rank,"1등",result[i].rank==="1등",result[i].rank=="1등");
-				str += "<h1>축 1등 : "+result[i].drwNo+"</h1>";
+				if(result[i].rank=="1등")
+					str += "<h1>축 1등 : "+result[i].drwNo+"</h1>";
 			}
 			for(var i = 0; i<result.length;i++){
-				console.log(result[i].rank,"2등",result[i].rank==="2등",result[i].rank=="2등");
-				str += "<h2>축 2등 : "+result[i].drwNo+"</h2>";
+				if(result[i].rank=="2등")
+					str += "<h2>축 2등 : "+result[i].drwNo+"</h2>";
 			}
 			for(var i = 0; i<result.length;i++){
-				console.log(result[i].rank,"3등",result[i].rank==="3등",result[i].rank=="3등");
-				str += "<h3>축 3등 : "+result[i].drwNo+"</h3>";
+				if(result[i].rank=="3등")
+					str += "<h3>축 3등 : "+result[i].drwNo+"</h3>";
 			}
 			for(var i = 0; i<result.length;i++){
-				console.log(result[i].rank,"4등",result[i].rank==="4등",result[i].rank=="4등");
-				str += "<h4>축 4등 : "+result[i].drwNo+"</h4>";
+				if(result[i].rank=="4등")
+					str += "<h4>축 4등 : "+result[i].drwNo+"</h4>";
 			}
 			if(result.length==0){
 				str="<h2>당첨회차가 없습니다 ㅜㅡㅠ</h2>";
