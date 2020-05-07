@@ -225,7 +225,7 @@
 					#{item}
 		    	</foreach>
 			
-				then '2둥'
+				then '2등'
 			    when cnt=6 then '1등'
 			    when cnt=5 then '3등'
 			    when cnt=4 then '4등'
