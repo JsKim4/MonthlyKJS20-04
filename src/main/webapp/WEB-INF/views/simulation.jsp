@@ -49,7 +49,7 @@
 					
 				</ul>
 			</div>
-			<div class="lottoFrame">
+			<div class="lottoFrame" id="congratulation">
 			</div>
 		</article>
 	</div>
@@ -90,7 +90,20 @@ $("li[name^=num]").click(function(){
 	}
 	if(selected.length==6){
 		lottoService.getSimluationList(selected,function(result){
-			console.log(result);
+			var str="";
+			var i = 0;
+			for(; i<result.length&&i<result[i].rank=="1등";i++)
+				str += "<h1>축 1등 : "+result[i].drwNo+"</h1>";
+			for(; i<result.length&&i<result[i].rank=="2등";i++)
+				str += "<h2>축 2등 : "+result[i].drwNo+"</h2>";
+			for(; i<result.length&&i<result[i].rank=="3등";i++)
+				str += "<h3>축 3등 : "+result[i].drwNo+"</h3>";
+			for(; i<result.length&&i<result[i].rank=="4등";i++)
+				str += "<h4>축 4등 : "+result[i].drwNo+"</h4>";
+			if(result.length==0){
+				str="<h2>당첨회차가 없습니다 ㅜㅡㅠ</h2>";
+			}
+			$("#congratulation").html(str);
 		});
 	}
 });
