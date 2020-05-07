@@ -92,6 +92,7 @@ $("li[name^=num]").click(function(){
 		lottoService.getSimluationList(selected,function(result){
 			var str="";
 			var i = 0;
+			console.log(result);
 			for(; i<result.length&&i<result[i].rank=="1등";i++)
 				str += "<h1>축 1등 : "+result[i].drwNo+"</h1>";
 			for(; i<result.length&&i<result[i].rank=="2등";i++)
