@@ -93,7 +93,7 @@ $("li[name^=num]").click(function(){
 			var str="";
 			var i = 0;
 			console.log(result);
-			for(; i<result.length&&i<result[i].rank==="1등";i++){
+			for(; i<result.length;i++){
 				console.log(result[i].rank,"1등")
 				str += "<h1>축 1등 : "+result[i].drwNo+"</h1>";
 			}
