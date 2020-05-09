@@ -180,6 +180,22 @@ public class HomeController {
 	}
 	
 	
+	@Scheduled(cron = "0 15 23 * * 0")
+	public void insertSchedule0() {
+		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
+		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+		
+		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+		messageConverters.add(converter);
+		restTemplate.setMessageConverters(messageConverters);
+		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
+		if(lottoDTO.getDrwNo()==null)
+			log.warning("Data Insert Failure pls Check");
+		else
+			service.insertLotto(lottoDTO,"0");
+	}
+	
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/{type}/{data}", method = RequestMethod.GET)
