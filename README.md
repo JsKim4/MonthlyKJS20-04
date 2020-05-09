@@ -1,13 +1,6 @@
 # MonthlyKJS20-04
-# 신규 기술 스택 
 
-AWS 
-
-Jenkins
-
-Spring Scheduler
-
-# Lotto Project
+# [기술 명세]
 
 로또 통계 프로그램
 
@@ -19,3 +12,12 @@ Main Page 에서 로또 회차 입력시 입력 회차에 해당하는 당첨번
 
 역대 로또 시뮬레이션을 통해 사용자가 입력한 번호를 기반으로
 가장 높은 등수를 기록한 회차를 View
+
+# [신규 기술]
+
+AWS 
+
+Jenkins
+
+Spring Scheduler
+
