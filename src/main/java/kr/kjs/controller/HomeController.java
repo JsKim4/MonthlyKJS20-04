@@ -73,7 +73,7 @@ public class HomeController {
 		return "admin/index";
 	}
 	
-	@Scheduled(cron = "0 0 21 * * 6")
+	@Scheduled(cron = "0 0 21 * * 7")
 	public void insertSchedule() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
