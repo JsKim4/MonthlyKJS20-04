@@ -73,8 +73,9 @@ public class HomeController {
 		return "admin/index";
 	}
 	
-	@Scheduled(cron = "0 0 21 * * 7")
-	public void insertSchedule() {
+	
+	@Scheduled(cron = "0 0 23 * * 7")
+	public void insertSchedule7() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
 		
@@ -85,8 +86,100 @@ public class HomeController {
 		if(lottoDTO.getDrwNo()==null)
 			log.warning("Data Insert Failure pls Check");
 		else
-			service.insertLotto(lottoDTO);
+			service.insertLotto(lottoDTO,"7");
 	}
+	
+	@Scheduled(cron = "0 0 23 * * 6")
+	public void insertSchedule6() {
+		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
+		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+		
+		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+		messageConverters.add(converter);
+		restTemplate.setMessageConverters(messageConverters);
+		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
+		if(lottoDTO.getDrwNo()==null)
+			log.warning("Data Insert Failure pls Check");
+		else
+			service.insertLotto(lottoDTO,"6");
+	}
+	
+	@Scheduled(cron = "0 0 23 * * 5")
+	public void insertSchedule5() {
+		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
+		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+		
+		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+		messageConverters.add(converter);
+		restTemplate.setMessageConverters(messageConverters);
+		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
+		if(lottoDTO.getDrwNo()==null)
+			log.warning("Data Insert Failure pls Check");
+		else
+			service.insertLotto(lottoDTO,"5");
+	}
+	
+	@Scheduled(cron = "0 0 23 * * 4")
+	public void insertSchedule4() {
+		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
+		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+		
+		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+		messageConverters.add(converter);
+		restTemplate.setMessageConverters(messageConverters);
+		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
+		if(lottoDTO.getDrwNo()==null)
+			log.warning("Data Insert Failure pls Check");
+		else
+			service.insertLotto(lottoDTO,"4");
+	}
+	
+	@Scheduled(cron = "0 0 23 * * 3")
+	public void insertSchedule3() {
+		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
+		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+		
+		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+		messageConverters.add(converter);
+		restTemplate.setMessageConverters(messageConverters);
+		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
+		if(lottoDTO.getDrwNo()==null)
+			log.warning("Data Insert Failure pls Check");
+		else
+			service.insertLotto(lottoDTO,"3");
+	}
+	
+	@Scheduled(cron = "0 0 23 * * 2")
+	public void insertSchedule2() {
+		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
+		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+		
+		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+		messageConverters.add(converter);
+		restTemplate.setMessageConverters(messageConverters);
+		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
+		if(lottoDTO.getDrwNo()==null)
+			log.warning("Data Insert Failure pls Check");
+		else
+			service.insertLotto(lottoDTO,"2");
+	}
+	
+	@Scheduled(cron = "0 0 23 * * 1")
+	public void insertSchedule1() {
+		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
+		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+		
+		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+		messageConverters.add(converter);
+		restTemplate.setMessageConverters(messageConverters);
+		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
+		if(lottoDTO.getDrwNo()==null)
+			log.warning("Data Insert Failure pls Check");
+		else
+			service.insertLotto(lottoDTO,"1");
+	}
+	
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/{type}/{data}", method = RequestMethod.GET)
