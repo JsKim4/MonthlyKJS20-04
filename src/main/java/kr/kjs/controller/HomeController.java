@@ -74,7 +74,7 @@ public class HomeController {
 	}
 	
 	
-	@Scheduled(cron = "0 0 23 * * 7")
+	@Scheduled(cron = "0 0 21 * * 7")
 	public void insertSchedule7() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
@@ -84,12 +84,12 @@ public class HomeController {
 		restTemplate.setMessageConverters(messageConverters);
 		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
 		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check");
+			log.warning("Data Insert Failure pls Check"+7);
 		else
 			service.insertLotto(lottoDTO,"7");
 	}
 	
-	@Scheduled(cron = "0 0 23 * * 6")
+	@Scheduled(cron = "0 0 21 * * 6")
 	public void insertSchedule6() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
@@ -101,10 +101,10 @@ public class HomeController {
 		if(lottoDTO.getDrwNo()==null)
 			log.warning("Data Insert Failure pls Check");
 		else
-			service.insertLotto(lottoDTO,"6");
+			service.insertLotto(lottoDTO,"6"+6);
 	}
 	
-	@Scheduled(cron = "0 0 23 * * 5")
+	@Scheduled(cron = "0 0 21 * * 5")
 	public void insertSchedule5() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
@@ -116,10 +116,10 @@ public class HomeController {
 		if(lottoDTO.getDrwNo()==null)
 			log.warning("Data Insert Failure pls Check");
 		else
-			service.insertLotto(lottoDTO,"5");
+			service.insertLotto(lottoDTO,"5"+5);
 	}
 	
-	@Scheduled(cron = "0 0 23 * * 4")
+	@Scheduled(cron = "0 0 21 * * 4")
 	public void insertSchedule4() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
@@ -129,12 +129,12 @@ public class HomeController {
 		restTemplate.setMessageConverters(messageConverters);
 		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
 		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check");
+			log.warning("Data Insert Failure pls Check"+4);
 		else
 			service.insertLotto(lottoDTO,"4");
 	}
 	
-	@Scheduled(cron = "0 0 23 * * 3")
+	@Scheduled(cron = "0 0 21 * * 3")
 	public void insertSchedule3() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
@@ -144,12 +144,12 @@ public class HomeController {
 		restTemplate.setMessageConverters(messageConverters);
 		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
 		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check");
+			log.warning("Data Insert Failure pls Check"+3);
 		else
 			service.insertLotto(lottoDTO,"3");
 	}
 	
-	@Scheduled(cron = "0 0 23 * * 2")
+	@Scheduled(cron = "0 0 21 * * 2")
 	public void insertSchedule2() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
@@ -159,12 +159,12 @@ public class HomeController {
 		restTemplate.setMessageConverters(messageConverters);
 		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
 		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check");
+			log.warning("Data Insert Failure pls Check"+2);
 		else
 			service.insertLotto(lottoDTO,"2");
 	}
 	
-	@Scheduled(cron = "0 0 23 * * 1")
+	@Scheduled(cron = "0 0 21 * * 1")
 	public void insertSchedule1() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
@@ -174,13 +174,13 @@ public class HomeController {
 		restTemplate.setMessageConverters(messageConverters);
 		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
 		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check");
+			log.warning("Data Insert Failure pls Check"+1);
 		else
 			service.insertLotto(lottoDTO,"1");
 	}
 	
 	
-	@Scheduled(cron = "0 15 23 * * 0")
+	@Scheduled(cron = "0 0 21 * * 0")
 	public void insertSchedule0() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
