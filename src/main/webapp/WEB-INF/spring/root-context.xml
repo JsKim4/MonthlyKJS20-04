@@ -33,13 +33,17 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
+	<bean id="LottoSchedule" class="kr.kjs.schedule.LottoSchedule" />
+
+	 <task:scheduler id="gsScheduler" pool-size="10" />
+	
+	 <task:executor id="gsTaskExecutor" pool-size="10" />
+	
+	 <task:annotation-driven executor="gsTaskExecutor" scheduler="gsScheduler" />
+	
 	
 	
 	<mybatis-spring:scan base-package="kr.kjs.mapper"  factory-ref="sqlSessionFactory"/>
 	
-	<context:component-scan base-package="kr.kjs.schedule"></context:component-scan>
-	<task:scheduler id="taskScheduler"/>
-	<task:executor id="taskExecutor" pool-size="1" />
-	<task:annotation-driven executor="taskExecutor" scheduler="taskScheduler" />
 	
 </beans>

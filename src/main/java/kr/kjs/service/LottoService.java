@@ -10,7 +10,7 @@ import kr.kjs.dto.TagInsertInfo;
 import kr.kjs.dto.TagSimpleInfo;
 
 public interface LottoService {
-	public boolean insertLotto(LottoDTO lottoDTO,String i);
+	public boolean insertLotto(LottoDTO lottoDTO);
 	
 	public LottoDTO getLotto(String data,String type);
 	

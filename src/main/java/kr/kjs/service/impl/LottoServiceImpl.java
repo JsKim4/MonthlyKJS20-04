@@ -28,13 +28,13 @@ public class LottoServiceImpl implements LottoService {
 	AdminMapper adminMapper;
 	
 	@Override
-	public boolean insertLotto(LottoDTO lottoDTO,String i) {
+	public boolean insertLotto(LottoDTO lottoDTO) {
 		try {
 			log.info(lottoDTO.toString());
 			mapper.insertLotto(lottoDTO);
-			adminMapper.insertHistory(new ProjectHistoryInsertDTO("done","주간 로또 자동 insert가 성공적으로 종료되었습니다."+i));
+			adminMapper.insertHistory(new ProjectHistoryInsertDTO("done","주간 로또 자동 insert가 성공적으로 종료되었습니다."));
 		}catch(Exception e) {
-			adminMapper.insertHistory(new ProjectHistoryInsertDTO("exception","주간 로또 자동 insert가 실패하였습니다."+i));
+			adminMapper.insertHistory(new ProjectHistoryInsertDTO("exception","주간 로또 자동 insert가 실패하였습니다."));
 			return false;
 		}
 		return true;
