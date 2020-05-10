@@ -34,7 +34,7 @@ public class LottoServiceImpl implements LottoService {
 			mapper.insertLotto(lottoDTO);
 			adminMapper.insertHistory(new ProjectHistoryInsertDTO("done","주간 로또 자동 insert가 성공적으로 종료되었습니다."));
 		}catch(Exception e) {
-			adminMapper.insertHistory(new ProjectHistoryInsertDTO("exception","주간 로또 자동 insert가 실패하였습니다."));
+			adminMapper.insertHistory(new ProjectHistoryInsertDTO("exception","주간 로또 자동 insert가 실패하였습니다."+String.valueOf(lottoDTO)));
 			return false;
 		}
 		return true;
