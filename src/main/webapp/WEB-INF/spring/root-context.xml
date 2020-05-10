@@ -33,6 +33,13 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
+	
+	
 	<mybatis-spring:scan base-package="kr.kjs.mapper"  factory-ref="sqlSessionFactory"/>
+	
+	<context:component-scan base-package="kr.kjs.schedule"></context:component-scan>
+	<task:scheduler id="taskScheduler"/>
+	<task:executor id="taskExecutor" pool-size="1" />
+	<task:annotation-driven executor="taskExecutor" scheduler="taskScheduler" />
 	
 </beans>

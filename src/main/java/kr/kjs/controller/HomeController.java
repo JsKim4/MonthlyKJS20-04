@@ -1,7 +1,5 @@
 package kr.kjs.controller;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,11 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -74,129 +68,6 @@ public class HomeController {
 	}
 	
 	
-	@Scheduled(cron = "0 0 21 * * 7")
-	public void insertSchedule7() {
-		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		
-		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
-		messageConverters.add(converter);
-		restTemplate.setMessageConverters(messageConverters);
-		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
-		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check"+7);
-		else
-			service.insertLotto(lottoDTO,"7");
-	}
-	
-	@Scheduled(cron = "0 0 21 * * 6")
-	public void insertSchedule6() {
-		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		
-		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
-		messageConverters.add(converter);
-		restTemplate.setMessageConverters(messageConverters);
-		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
-		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check");
-		else
-			service.insertLotto(lottoDTO,"6"+6);
-	}
-	
-	@Scheduled(cron = "0 0 21 * * 5")
-	public void insertSchedule5() {
-		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		
-		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
-		messageConverters.add(converter);
-		restTemplate.setMessageConverters(messageConverters);
-		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
-		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check");
-		else
-			service.insertLotto(lottoDTO,"5"+5);
-	}
-	
-	@Scheduled(cron = "0 0 21 * * 4")
-	public void insertSchedule4() {
-		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		
-		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
-		messageConverters.add(converter);
-		restTemplate.setMessageConverters(messageConverters);
-		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
-		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check"+4);
-		else
-			service.insertLotto(lottoDTO,"4");
-	}
-	
-	@Scheduled(cron = "0 0 21 * * 3")
-	public void insertSchedule3() {
-		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		
-		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
-		messageConverters.add(converter);
-		restTemplate.setMessageConverters(messageConverters);
-		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
-		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check"+3);
-		else
-			service.insertLotto(lottoDTO,"3");
-	}
-	
-	@Scheduled(cron = "0 0 21 * * 2")
-	public void insertSchedule2() {
-		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		
-		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
-		messageConverters.add(converter);
-		restTemplate.setMessageConverters(messageConverters);
-		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
-		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check"+2);
-		else
-			service.insertLotto(lottoDTO,"2");
-	}
-	
-	@Scheduled(cron = "0 0 21 * * 1")
-	public void insertSchedule1() {
-		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		
-		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
-		messageConverters.add(converter);
-		restTemplate.setMessageConverters(messageConverters);
-		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
-		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check"+1);
-		else
-			service.insertLotto(lottoDTO,"1");
-	}
-	
-	
-	@Scheduled(cron = "0 0 21 * * 0")
-	public void insertSchedule0() {
-		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>(); 
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		
-		converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
-		messageConverters.add(converter);
-		restTemplate.setMessageConverters(messageConverters);
-		LottoDTO lottoDTO = restTemplate.getForObject(LOTTO_URL + (service.getLastDrwNo()+1), LottoDTO.class);
-		if(lottoDTO.getDrwNo()==null)
-			log.warning("Data Insert Failure pls Check");
-		else
-			service.insertLotto(lottoDTO,"0");
-	}
-	
-	
-
 	@ResponseBody
 	@RequestMapping(value = "/{type}/{data}", method = RequestMethod.GET)
 	public ResponseEntity<LottoDTO> home2(@PathVariable("data") String data,@PathVariable("type") String type) {
