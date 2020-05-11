@@ -7,7 +7,7 @@
 		select 
 			count(*) 
 		from 
-			tb_project_admin_login 
+			tb_project_admin_account
 		where
 			(id,password,project_id) = (#{id},#{password},#{project_id}) 
 		
