@@ -39,7 +39,7 @@ public class LottoSchedule {
 
 	static final String LOTTO_URL = "https://www.nlotto.co.kr/common.do?method=getLottoNumber&drwNo=";
 
-	@Scheduled(cron = "1 * * * * *")
+	@Scheduled(cron = "* * 21 * 6 *")
 	public void insertSchedule() {
 
 		try {
