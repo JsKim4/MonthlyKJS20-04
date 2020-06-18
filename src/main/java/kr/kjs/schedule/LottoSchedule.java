@@ -37,7 +37,7 @@ public class LottoSchedule {
 	@Autowired
 	RestTemplate restTemplate;
 
-	static final String LOTTO_URL = "https://www.nlotto.co.kr/common.do?method=getLottoNumber&drwNo=";
+	static final String LOTTO_URL = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=";
 
 	@Scheduled(cron = "* * 21 * 6 *")
 	public void insertSchedule() {
